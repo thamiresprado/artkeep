@@ -22,19 +22,16 @@ class _MainHomePageState extends State<MainHomePage>{
   Widget build(BuildContext context){
     return Scaffold(
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight
-            (64.0), // Defina a altura do
-          // cabeçalho como 72px
+          preferredSize: const Size.fromHeight(64.0),
           child: AppBar(
             backgroundColor: Colors.white,
             actions: const [
               Padding(
                 padding: EdgeInsets.only(right: 16.0),
                 child: Icon(
-                  Icons.menu, // Ícone no canto
-                  // direito do cabeçalho
-                  color: Colors.black, // Cor do ícone
-                  size: 24.0, // Tamanho do ícone
+                  Icons.menu,
+                  color: Colors.black,
+                  size: 24.0,
                 ),
               ),
             ],

@@ -17,7 +17,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  flutter_launcher_icons: ^0.13.1
   flutter_lints: ^2.0.0
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "lib/images/logo.png"
 
 flutter:
 
@@ -25,3 +31,5 @@ flutter:
 
   assets:
     - lib/images/principal-image.png
+    - lib/images/the-met.png
+    - lib/images/foryou.png
