@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:testeartkeep/pages/search.dart';
+import 'art-details.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -9,20 +10,38 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void _navigateToSearchPage() {
+  void _navigateToDetailPage() {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) {
-          return const SearchPage();
+          return DetailsPage(navigator: Navigator.of(context));
         },
       ),
     );
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(64.0),
+        child: AppBar(
+          backgroundColor: Colors.white,
+          actions: const [
+            Padding(
+              padding: EdgeInsets.only(right: 16.0),
+              child: Icon(
+                Icons.menu,
+                color: Colors.black,
+                size: 24.0,
+              ),
+            ),
+          ],
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -83,7 +102,7 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 24),
             InkWell(
-              onTap: _navigateToSearchPage,
+              onTap: _navigateToDetailPage,
               child: Container(
                 child: Image.asset(
                   'lib/images/foryou-1.png',
@@ -97,7 +116,7 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
-                  onTap: _navigateToSearchPage,
+                  onTap: _navigateToDetailPage,
                   child: Container(
                     width: (MediaQuery.of(context).size.width - 4) / 2,
                     height: 140,
@@ -109,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 InkWell(
-                  onTap: _navigateToSearchPage,
+                  onTap: _navigateToDetailPage,
                   child: Container(
                     width: (MediaQuery.of(context).size.width - 4) / 2,
                     height: 140,

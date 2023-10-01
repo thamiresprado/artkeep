@@ -21,22 +21,6 @@ class _MainHomePageState extends State<MainHomePage>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(64.0),
-          child: AppBar(
-            backgroundColor: Colors.white,
-            actions: const [
-              Padding(
-                padding: EdgeInsets.only(right: 16.0),
-                child: Icon(
-                  Icons.menu,
-                  color: Colors.black,
-                  size: 24.0,
-                ),
-              ),
-            ],
-          ),
-        ),
       body: Stack(
         children: [
           tabList.elementAt(pageIndex),
