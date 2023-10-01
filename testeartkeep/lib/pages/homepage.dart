@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testeartkeep/pages/search.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -8,6 +9,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  void _navigateToSearchPage() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) {
+          return const SearchPage();
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +32,7 @@ class _HomePageState extends State<HomePage> {
               child: Image.asset('lib/images/principal-image.png'),
             ),
             const SizedBox(height: 80),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Image.asset('lib/images/the-met.png', fit: BoxFit.cover),
             ),
@@ -51,8 +62,7 @@ class _HomePageState extends State<HomePage> {
                 Expanded(
                   child: Container(
                     margin: const EdgeInsets.only(left: 20, right: 16),
-                    constraints: const BoxConstraints
-                      (maxWidth: 200),
+                    constraints: const BoxConstraints(maxWidth: 200),
                     child: const Text(
                       "Now it is your time to create your own gallery. Here we have some suggestions based on your favorites types of art",
                       style: TextStyle(
@@ -62,18 +72,81 @@ class _HomePageState extends State<HomePage> {
                       ),
                       textAlign: TextAlign.right,
                     ),
-
                   ),
                 ),
                 Container(
                   margin: const EdgeInsets.only(right: 20),
                   width: 100,
-                  child: Image.asset
-                    ('lib/images/foryou.png'),
+                  child: Image.asset('lib/images/foryou.png'),
                 ),
               ],
             ),
-            const SizedBox(height: 180),
+            const SizedBox(height: 24),
+            InkWell(
+              onTap: _navigateToSearchPage,
+              child: Container(
+                child: Image.asset(
+                  'lib/images/foryou-1.png',
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                ),
+              ),
+            ),
+            const SizedBox(height: 4),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                  onTap: _navigateToSearchPage,
+                  child: Container(
+                    width: (MediaQuery.of(context).size.width - 4) / 2,
+                    height: 140,
+                    child: Image.asset(
+                      'lib/images/foryou-2.png',
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: _navigateToSearchPage,
+                  child: Container(
+                    width: (MediaQuery.of(context).size.width - 4) / 2,
+                    height: 140,
+                    child: Image.asset(
+                      'lib/images/foryou-3.png',
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Container(
+              margin: const EdgeInsets.only(left: 8, right: 8),
+              child: ElevatedButton(
+                onPressed: () {
+                  // levar pra pagina do perfil
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.black,
+                  onPrimary: Colors.white,
+                  minimumSize: const Size(double.infinity, 48),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                ),
+                child: const Text(
+                  "SEE MORE",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 100),
           ],
         ),
       ),

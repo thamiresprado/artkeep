@@ -33,3 +33,6 @@ flutter:
     - lib/images/principal-image.png
     - lib/images/the-met.png
     - lib/images/foryou.png
+    - lib/images/foryou-1.png
+    - lib/images/foryou-2.png
+    - lib/images/foryou-3.png
