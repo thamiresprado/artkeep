@@ -117,7 +117,6 @@ class _DetailsPageState extends State<DetailsPage> {
               ),
             ),
 
-
             Align( //carrossel
               alignment: const Alignment(0, 0.15),
                 child: SingleChildScrollView(
