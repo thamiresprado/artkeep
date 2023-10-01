@@ -77,7 +77,10 @@ class _DetailsPageState extends State<DetailsPage> {
               ),
             ),
             
-            //o resto do conteudo aqui
+            Align(
+              alignment: Alignment.center,
+              child: const Text('Hello!'),
+            ),
 
           ],
         ),
