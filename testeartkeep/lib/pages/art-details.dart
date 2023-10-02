@@ -9,6 +9,8 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
+  bool _isBottomSheetVisible = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,16 +57,21 @@ class _DetailsPageState extends State<DetailsPage> {
                     ),
                   ),
                   // Ícone à direita
-                  const Icon(
-                    Icons.star_border,
-                    size: 32.0,
-                    color: Colors.white,
+                  GestureDetector(
+                    onTap: () {
+                      _showBottomSheet();
+                    },
+                    child: const Icon(
+                      Icons.star_border,
+                      size: 32.0,
+                      color: Colors.white,
+                    ),
                   ),
                 ],
               ),
             ),
-            // Container branco com bordas arredondadas e cor de borda rosa
-            Positioned(
+
+            Positioned( // Titulo e obra
               left: 20.0,
               right: 20.0,
               bottom: MediaQuery.of(context).size.height * 0.72 - 100.0,
@@ -72,13 +79,13 @@ class _DetailsPageState extends State<DetailsPage> {
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(4.0), // Bordas de 16px
+                  borderRadius: BorderRadius.circular(4.0),
                   border: Border.all(
                     color: Colors.grey,
                     width: 0.3,
                   ),
                 ),
-                padding: EdgeInsets.all(16.0), // Preenchimento interno de 16px
+                padding: EdgeInsets.all(16.0),
                 child: Row(
                   children: [
                     Container(
@@ -86,7 +93,7 @@ class _DetailsPageState extends State<DetailsPage> {
                       height: 150,
                       margin: const EdgeInsets.only(right: 12.0),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4.0), // Bordas de 16px
+                        borderRadius: BorderRadius.circular(4.0),
                     ),
                       child: Image.asset(
                         'lib/images/foryou-1.png',
@@ -94,7 +101,6 @@ class _DetailsPageState extends State<DetailsPage> {
                         width: double.infinity,
                       ),
                     ),
-
                     const Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,7 +114,6 @@ class _DetailsPageState extends State<DetailsPage> {
                               height: 1.0,
                             ),
                           ),
-
                         ],
                       ),
                     ),
@@ -128,7 +133,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         height: 250,
                         margin: const EdgeInsets.only(left: 20),
                         child: Image.asset(
-                          'lib/images/art1.png',
+                          'lib/images/art2.png',
                           fit: BoxFit.cover,
                           width: double.infinity,
                         ),
@@ -138,7 +143,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         height: 250,
                         margin: const EdgeInsets.only(left: 8),
                         child: Image.asset(
-                          'lib/images/art2.png',
+                          'lib/images/art1.png',
                           fit: BoxFit.cover,
                           width: double.infinity,
                         ),
@@ -167,9 +172,40 @@ class _DetailsPageState extends State<DetailsPage> {
                   ),
                 ),
               ),
+
           ],
         ),
       ),
+    );
+  }
+  void _showBottomSheet() {
+    setState(() {
+      _isBottomSheetVisible = true;
+    });
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          // Defina o conteúdo da sua bottom sheet aqui
+          child: Column(
+            children: [
+              ListTile(
+                title: Text('Item 1'),
+                onTap: () {
+                  // Adicione a lógica para lidar com o clique no item 1 aqui
+                },
+              ),
+              ListTile(
+                title: Text('Item 2'),
+                onTap: () {
+                  // Adicione a lógica para lidar com o clique no item 2 aqui
+                },
+              ),
+              // Adicione mais itens da bottom sheet, se necessário
+            ],
+          ),
+        );
+      },
     );
   }
 }

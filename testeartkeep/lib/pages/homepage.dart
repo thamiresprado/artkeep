@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:testeartkeep/pages/search.dart';
 import 'art-details.dart';
 
 class HomePage extends StatefulWidget {
