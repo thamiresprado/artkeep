@@ -31,8 +31,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     width: double.infinity,
                   ),
                   Container(
-                    color: Colors.black
-                        .withOpacity(0.7), //background
+                    color: Colors.black.withOpacity(0.7),
                   ),
                 ],
               ),
@@ -45,7 +44,6 @@ class _DetailsPageState extends State<DetailsPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // Ícone à esquerda
                   GestureDetector(
                     onTap: () {
                       widget.navigator.pop(); // Voltar para a página anterior
@@ -56,10 +54,10 @@ class _DetailsPageState extends State<DetailsPage> {
                       color: Colors.white,
                     ),
                   ),
-                  // Ícone à direita
+
                   GestureDetector(
                     onTap: () {
-                      _showBottomSheet();
+                      _showBottomSheet();//salvar em pasta
                     },
                     child: const Icon(
                       Icons.star_border,
@@ -172,7 +170,6 @@ class _DetailsPageState extends State<DetailsPage> {
                   ),
                 ),
               ),
-
           ],
         ),
       ),
@@ -182,26 +179,196 @@ class _DetailsPageState extends State<DetailsPage> {
     setState(() {
       _isBottomSheetVisible = true;
     });
+
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
         return Container(
-          // Defina o conteúdo da sua bottom sheet aqui
+          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
           child: Column(
             children: [
-              ListTile(
-                title: Text('Item 1'),
-                onTap: () {
-                  // Adicione a lógica para lidar com o clique no item 1 aqui
-                },
+              Container(
+                alignment: Alignment.center,
+                margin: const EdgeInsets.only(top: 12.0),
+                child: const Text(
+                  'Salvar na pasta',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
-              ListTile(
-                title: Text('Item 2'),
-                onTap: () {
-                  // Adicione a lógica para lidar com o clique no item 2 aqui
-                },
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: 48.0,
+                    height: 48.0,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFE1E1E1),
+                      borderRadius: BorderRadius.circular(4.0),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: const Text(
+                        'Pasta 1',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              // Adicione mais itens da bottom sheet, se necessário
+
+              const SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: 48.0,
+                    height: 48.0,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFE1E1E1),
+                      borderRadius: BorderRadius.circular(4.0),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: const Text(
+                        'Pasta 2',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: 48.0,
+                    height: 48.0,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFE1E1E1),
+                      borderRadius: BorderRadius.circular(4.0),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: const Text(
+                        'Pasta 3',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: 48.0,
+                    height: 48.0,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFE1E1E1),
+                      borderRadius: BorderRadius.circular(4.0),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: const Text(
+                        'Pasta 4',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: 48.0,
+                    height: 48.0,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFE1E1E1),
+                      borderRadius: BorderRadius.circular(4.0),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: const Text(
+                        'Pasta 5',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 48),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: 48.0,
+                    height: 48.0,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.black,
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(4.0),
+                    ),
+                    child: const Center(
+                      child: Icon(
+                        Icons.add,
+                        size: 24.0,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: const Text(
+                        'Criar nova pasta',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         );
