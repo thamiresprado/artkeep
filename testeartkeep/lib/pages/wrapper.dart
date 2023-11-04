@@ -31,7 +31,7 @@ class WrapperState extends State<Wrapper> {
               context: context,
               builder: (context) {
                 return AlertDialog(
-                  title: const Text("Erro do Firebase"),
+                  title: const Text("Opa, um erro aconteceu"),
                   content: Text(state.message),
                 );
               });
@@ -53,19 +53,7 @@ Widget authenticatedWidget(BuildContext context) {
 }
 
 Widget unauthenticatedWidget(BuildContext context) {
-  return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        body: const TabBarView(
-          children: [RegisterScreen(), LoginScreen()],
-        ),
-        appBar: AppBar(
-          title: const Text("Autenticação Necessária"),
-          bottom: const TabBar(
-            tabs: [Tab(text: "Novo Cadastro"), Tab(text: "Efetuar Login")],
-          ),
-        ),
-      ));
+  return const LoginScreen();
 }
 
 // Widget unauthenticatedWidget(BuildContext context) {

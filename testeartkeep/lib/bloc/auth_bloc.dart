@@ -30,6 +30,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthError(message: "Impossível Registrar: ${e.toString()}"));
       }
     });
+    
 
     on<LoginUser>((event, emit) async {
       try {
