@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "133879350250",
+    "project_id": "artkeep-3a564",
+    "storage_bucket": "artkeep-3a564.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:133879350250:android:952a1c943ceb00a879a893",
+        "android_client_info": {
+          "package_name": "com.example.testeartkeep"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD50WzG2t8MlrMIB3BLIRRLSJi8EmDj80E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:testeartkeep/pages/homepage.dart';
+import 'package:testeartkeep/pages/login.dart';
 import 'package:testeartkeep/pages/profile.dart';
 import 'package:testeartkeep/pages/search.dart';
 
@@ -15,7 +16,7 @@ class _MainHomePageState extends State<MainHomePage>{
   final List<Widget> tabList = [
     HomePage(),
     SearchPage(),
-    ProfilePage(),
+    Login(),//mudar!!!!!!!
   ];
 
   @override
