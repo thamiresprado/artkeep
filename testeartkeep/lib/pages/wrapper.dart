@@ -53,11 +53,72 @@ Widget authenticatedWidget(BuildContext context) {
 }
 
 Widget unauthenticatedWidget(BuildContext context) {
-  return const LoginScreen();
+  return DefaultTabController(
+    length: 2,
+    child: Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: const Text(""),
+        centerTitle: true,
+        bottom: const PreferredSize(
+          preferredSize: Size.fromHeight(120),
+          child: Padding(
+            padding: EdgeInsets.only(bottom: 0),
+            child: TabBar(
+              labelColor: Colors.white, // Cor do texto quando selecionado
+              unselectedLabelColor: Colors.white, // Cor do texto não selecionado
+              labelStyle: TextStyle(fontWeight: FontWeight.w900),
+              unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
+              indicator: BoxDecoration(
+                border: Border(bottom: BorderSide(color: Colors.transparent, width: 3)),
+              ),
+              tabs: [
+                Tab(
+                  text: "Efetuar Login",
+                ),
+                Tab(
+                  text: "Novo Cadastro",
+                ),
+              ],
+            ),
+          ),
+        ),
+        flexibleSpace: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'lib/images/login-image.png',
+                width: 72,
+                height: 72,
+              ),
+            ],
+          ),
+        ),
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('lib/images/met.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: const TabBarView(
+          children: [LoginScreen(), RegisterScreen()],
+        ),
+      ),
+    ),
+  );
+
+
+
+
+
 }
 
 // Widget unauthenticatedWidget(BuildContext context) {
-//   return const Scaffold(
-//     body: WelcomeScreen(),
-//   );
+//   return const LoginScreen();
 // }
+

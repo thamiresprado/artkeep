@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../bloc/auth_bloc.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -7,48 +8,284 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GlobalKey<FormState> formkey = GlobalKey();
+    GlobalKey<FormState> formKey = GlobalKey();
     String username = "";
     String password = "";
-    return Scaffold( // Usar um Scaffold para fornecer um contexto Material
-      body: ListView(
+
+    return Scaffold(
+      body: Stack(
         children: [
-          Form(
-            key: formkey,
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('lib/images/met.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 180),
             child: Column(
               children: [
-                TextFormField(
-                  validator: (String? inValue) {
-                    if (inValue!.isEmpty) {
-                      return "Insira algo como username";
-                    }
-                    return null;
-                  },
-                  onSaved: (String? inValue) {
-                    username = inValue!;
-                  },
-                ),
-                TextFormField(
-                  validator: (String? inValue) {
-                    if (inValue!.length < 4) {
-                      return "Tem que ter ao menos 4 caracteres";
-                    }
-                    return null;
-                  },
-                  onSaved: (String? inValue) {
-                    password = inValue!;
-                  },
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (formkey.currentState!.validate()) {
-                      formkey.currentState!.save();
-                      // Lançando evento
-                      BlocProvider.of<AuthBloc>(context)
-                          .add(RegisterUser(username: username, password: password));
-                    }
-                  },
-                  child: const Text("Register"),
+                Form(
+                  key: formKey,
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.only(
+                                top: 48,
+                                left: 24,
+                              ),
+                              child: Stack(
+                                alignment: Alignment.topLeft,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(left: 8, top: 6, bottom: 16),
+                                    child: const Text(
+                                      "FIRST NAME",
+                                      style: TextStyle(
+                                        color:
+                                        Colors.grey,
+                                      ),
+                                    ),
+                                  ),
+                                  TextFormField(
+                                    // onSaved: (String? inValue) {
+                                    // },
+                                    style: TextStyle(color: Colors.white),
+                                    decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.symmetric(
+                                        vertical: 24,
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(4.0),
+                                        borderSide: const BorderSide(
+                                          width: 1.0,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 6),
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.only(
+                                top: 48,
+                                right: 24,
+                              ),
+                              child: Stack(
+                                alignment: Alignment.topLeft,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(left: 8, top: 6, bottom: 16),
+                                    child: const Text(
+                                      "LAST NAME",
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ),
+                                  TextFormField(
+                                    // onSaved: (String? inValue) {
+                                    // },
+                                    style: TextStyle(color: Colors.white),
+                                    decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.symmetric(
+                                        vertical: 24,
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(4.0),
+                                        borderSide: const BorderSide(
+                                          width: 1.0,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 6),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.only(
+                                left: 24,
+                                right: 24,
+                              ),
+                              child: Stack(
+                                alignment: Alignment.topLeft,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(left: 8, top: 6, bottom: 16),
+                                    child: const Text(
+                                      "DATE OF BIRTH",
+                                      style: TextStyle(
+                                        color:
+                                        Colors
+                                            .grey,
+                                      ),
+                                    ),
+                                  ),
+                                  TextFormField(
+                                    // onSaved: (String? inValue) {
+                                    // },
+                                    style: TextStyle(color: Colors.white),
+                                    decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.symmetric(
+                                        vertical: 24,
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(4.0),
+                                        borderSide: const BorderSide(
+                                          width: 1.0,
+                                          color: Colors.black, // Cor da borda
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 6),
+
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.only(
+                                left: 24,
+                                right: 24,
+                              ),
+                              child: Stack(
+                                alignment: Alignment.topLeft,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(left: 8, top: 6, bottom: 16),
+                                    child: const Text(
+                                      "EMAIL",
+                                      style: TextStyle(
+                                        color:
+                                        Colors
+                                            .grey,
+                                      ),
+                                    ),
+                                  ),
+                                  TextFormField(
+                                    onSaved: (String? inValue) {
+                                      username = inValue!;
+                                    },
+                                    style: TextStyle(color: Colors.white),
+                                    decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.symmetric(
+                                        vertical: 24,
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(4.0),
+                                        borderSide: const BorderSide(
+                                          width: 1.0,
+                                          color: Colors.black, // Cor da borda
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 6),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.only(
+                                left: 24,
+                                right: 24,
+                              ),
+                              child: Stack(
+                                alignment: Alignment.topLeft,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(left: 8, top: 6, bottom: 16),
+                                    child: const Text(
+                                      "PASSWORD",
+                                      style: TextStyle(
+                                        color:
+                                        Colors
+                                            .grey, // Cor do texto
+                                      ),
+                                    ),
+                                  ),
+                                  TextFormField(
+                                    onSaved: (String? inValue) {
+                                      password = inValue!;
+                                    },
+                                    style: TextStyle(color: Colors.white),
+                                    decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.symmetric(
+                                        vertical: 24,
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(4.0),
+                                        borderSide: const BorderSide(
+                                          width: 1.0,
+                                          color: Colors.black, // Cor da borda
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 12),
+
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              formKey.currentState!.save();
+                              BlocProvider.of<AuthBloc>(context)
+                                  .add(RegisterUser(username: username, password: password));
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.black87.withOpacity(0.7),
+                            onPrimary: Colors.white,
+                            padding: const EdgeInsets.symmetric(vertical: 24),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4.0),
+                              side: const BorderSide(width: 1, color: Colors.white30),
+                            ),
+                          ),
+                          child: const Text
+                            ("REGISTER"),
+                        ),
+                      ),
+
+                    ],
+
+                  ),
                 ),
               ],
             ),
