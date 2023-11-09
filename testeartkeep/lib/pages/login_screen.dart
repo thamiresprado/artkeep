@@ -65,6 +65,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                           onSaved: (String? inValue) {
                             username = inValue!;
                           },
+                          style: const TextStyle(color: Colors.white),
                           decoration: const InputDecoration(
                             hintText: "email",
                             prefixIcon: Icon
@@ -72,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                             border: OutlineInputBorder(),
                             hintStyle:
                             TextStyle(color:
-                            Colors.white38),
+                            Colors.white),
                           ),
                         ),
                       ),
@@ -86,6 +87,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                           onSaved: (String? inValue) {
                             password = inValue!;
                           },
+                          style: const TextStyle(color: Colors.white),
                           decoration: const InputDecoration(
                             hintText: "password",
                             prefixIcon: Icon
@@ -96,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                             ),
                             hintStyle:
                             TextStyle(color:
-                            Colors.white38),
+                            Colors.white),
                           ),
                         ),
                       ),
@@ -128,24 +130,6 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                     ],
                   ),
                 ),
-                // Container(
-                //   width: double.infinity,
-                //   padding: const EdgeInsets.symmetric(horizontal: 24),
-                //   child: ElevatedButton(
-                //     onPressed: () {
-                //       _tabController?.animateTo(1); // Mude para a segunda guia (índice 1)
-                //     },
-                //     style: ElevatedButton.styleFrom(
-                //       primary: Colors.transparent,
-                //       onPrimary: Colors.white,
-                //       padding: const EdgeInsets.symmetric(vertical: 24),
-                //       shape: RoundedRectangleBorder(
-                //         borderRadius: BorderRadius.circular(4.0),
-                //       ),
-                //     ),
-                //     child: const Text("SIGN UP"),
-                //   ),
-                // ),
               ],
             ),
           ),

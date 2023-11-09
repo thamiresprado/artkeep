@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:testeartkeep/pages/welcome.dart';
 
 //import '../bloc/manage_bloc.dart';
 //import '../bloc/monitor_bloc.dart';
@@ -54,7 +55,7 @@ Widget authenticatedWidget(BuildContext context) {
 
 Widget unauthenticatedWidget(BuildContext context) {
   return DefaultTabController(
-    length: 2,
+    length: 3,
     child: Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -67,8 +68,8 @@ Widget unauthenticatedWidget(BuildContext context) {
           child: Padding(
             padding: EdgeInsets.only(bottom: 0),
             child: TabBar(
-              labelColor: Colors.white, // Cor do texto quando selecionado
-              unselectedLabelColor: Colors.white, // Cor do texto não selecionado
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.white,
               labelStyle: TextStyle(fontWeight: FontWeight.w900),
               unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
               indicator: BoxDecoration(
@@ -76,10 +77,13 @@ Widget unauthenticatedWidget(BuildContext context) {
               ),
               tabs: [
                 Tab(
-                  text: "Efetuar Login",
+                  text: "Welcome",
                 ),
                 Tab(
-                  text: "Novo Cadastro",
+                  text: "Login",
+                ),
+                Tab(
+                  text: "SignUp",
                 ),
               ],
             ),
@@ -106,15 +110,15 @@ Widget unauthenticatedWidget(BuildContext context) {
           ),
         ),
         child: const TabBarView(
-          children: [LoginScreen(), RegisterScreen()],
+          children: [
+            WelcomeScreen(),
+            LoginScreen(),
+            RegisterScreen(),
+          ],
         ),
       ),
     ),
   );
-
-
-
-
 
 }
 

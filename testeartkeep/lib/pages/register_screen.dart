@@ -55,7 +55,7 @@ class RegisterScreen extends StatelessWidget {
                                   TextFormField(
                                     // onSaved: (String? inValue) {
                                     // },
-                                    style: TextStyle(color: Colors.white),
+                                    style: const TextStyle(color: Colors.white),
                                     decoration: InputDecoration(
                                       contentPadding: const EdgeInsets.symmetric(
                                         vertical: 24,
@@ -64,7 +64,7 @@ class RegisterScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(4.0),
                                         borderSide: const BorderSide(
                                           width: 1.0,
-                                          color: Colors.black,
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),
@@ -73,7 +73,7 @@ class RegisterScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(width: 6),
+                          const SizedBox(width: 6),
                           Expanded(
                             child: Container(
                               padding: const EdgeInsets.only(
@@ -95,7 +95,7 @@ class RegisterScreen extends StatelessWidget {
                                   TextFormField(
                                     // onSaved: (String? inValue) {
                                     // },
-                                    style: TextStyle(color: Colors.white),
+                                    style: const TextStyle(color: Colors.white),
                                     decoration: InputDecoration(
                                       contentPadding: const EdgeInsets.symmetric(
                                         vertical: 24,
@@ -104,7 +104,7 @@ class RegisterScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(4.0),
                                         borderSide: const BorderSide(
                                           width: 1.0,
-                                          color: Colors.black,
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),
