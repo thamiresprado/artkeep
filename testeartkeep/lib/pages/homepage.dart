@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'art-details.dart';
+import 'categories.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -29,13 +30,21 @@ class _HomePageState extends State<HomePage> {
         preferredSize: const Size.fromHeight(64.0),
         child: AppBar(
           backgroundColor: Colors.white,
-          actions: const [
+          actions: [
             Padding(
-              padding: EdgeInsets.only(right: 16.0),
-              child: Icon(
-                Icons.menu,
-                color: Colors.black,
-                size: 24.0,
+              padding: const EdgeInsets.only(right: 16.0),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CategoriesPage()),
+                  );
+                },
+                child: const Icon(
+                  Icons.menu,
+                  color: Colors.black,
+                  size: 24.0,
+                ),
               ),
             ),
           ],

@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
               height: 100,
             ),
           ),
-          
+
           Positioned(
             bottom: 12,
             left: 32,
@@ -170,7 +170,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                           ),
                         ),
                         child: const Text(
-                            "SIGN UP",
+                          "SIGN UP",
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,

@@ -16,12 +16,15 @@ class _SearchPageState extends State<SearchPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Padding(
-              padding: EdgeInsets.only(left: 10.0),
+              padding: const EdgeInsets
+                  .fromLTRB(16, 24,
+                  16, 0),
               child: Text(
                 'search',
                 style: TextStyle(
-                  fontSize: 22.0, // Tamanho da fonte
-                  fontWeight: FontWeight.bold, // Peso da fonte
+                  fontFamily: 'AlfaSlabOne',
+                  fontSize: 24,
+                  color: Colors.black,
                 ),
               ),
             ),
