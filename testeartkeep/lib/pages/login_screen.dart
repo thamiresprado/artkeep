@@ -41,16 +41,19 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.topCenter,
+
+          Positioned(
+            top: 48,
+            left: MediaQuery.of(context).size.width / 2 - 50, // Ajuste o valor conforme necessário
             child: Image.asset(
               'lib/images/login-image.png',
-              width: 400,
-              height: 400,
+              width: 100,
+              height: 100,
             ),
           ),
+          
           Positioned(
-            bottom: 48,
+            bottom: 12,
             left: 32,
             right: 32,
             child: SingleChildScrollView(
