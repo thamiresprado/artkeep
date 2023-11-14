@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   country_list_pick: ^1.0.1+6
 
   cupertino_icons: ^1.0.2
@@ -22,7 +23,7 @@ dev_dependencies:
     sdk: flutter
 
   flutter_launcher_icons: ^0.13.1
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 flutter_icons:
   android: true
@@ -30,6 +31,10 @@ flutter_icons:
   image_path: "lib/images/logo.png"
 
 flutter:
+  fonts:
+    - family: AlfaSlabOne
+      fonts:
+        - asset: lib/fonts/AlfaSlabOne-Regular.ttf
 
   uses-material-design: true
 
@@ -44,15 +49,9 @@ flutter:
     - lib/images/art2.png
     - lib/images/art3.png
     - lib/images/art4.png
-    - lib/images/avatar.png
-    - lib/images/avatar.svg
     - lib/images/image-8.png
     - lib/images/login-image.png
     - lib/images/rectangle-black.png
     - lib/images/met.png
-#
-#  fonts:
-#    - family: Alfa Slab One
-#      fonts:
-#        - asset: lib/fonts/AlfaSlabOne-Regular.ttf
-
+    - lib/images/welcome-bg.png
+    - lib/images/avatar.png

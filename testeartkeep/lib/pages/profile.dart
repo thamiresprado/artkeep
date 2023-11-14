@@ -68,8 +68,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     'Mari Araújo',
                     style: TextStyle(
                       fontSize: 24.0, // Tamanho da fonte
-                      fontWeight: FontWeight.bold, // Peso da fonte
-                      fontFamily: 'Alfa Slab One',
+                      fontFamily: 'AlfaSlabOne',
                     ),
                   ),
                   const Text(
@@ -99,15 +98,15 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   SizedBox(height: 16),
                   Padding(padding: const EdgeInsets.only(left: 8), // Adiciona espaço à esquerda do texto
-                  child: Text(
-                    ' ',
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Alfa Slab One',
+                    child: Text(
+                      ' ',
+                      style: TextStyle(
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Alfa Slab One',
+                      ),
                     ),
-                  ),
-            )
+                  )
                   // Text(
                   //   'NAME',
                   //   style: TextStyle(
@@ -128,13 +127,6 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
           ),
-
-
-
-
-
-
-
         ],
       ),
     );

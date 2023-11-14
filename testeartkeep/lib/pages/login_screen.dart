@@ -41,96 +41,146 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
               ),
             ),
           ),
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                // Image.asset(
-                //   'lib/images/login-image.png',
-                //   width: 300,
-                //   height: 300,
-                // ),
-                const SizedBox(height: 120),
-                Form(
-                  key: formkey,
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(
-                          top: 102,
-                          left: 24,
-                          right: 24,
-                          bottom: 6,
+          Align(
+            alignment: Alignment.topCenter,
+            child: Image.asset(
+              'lib/images/login-image.png',
+              width: 400,
+              height: 400,
+            ),
+          ),
+          Positioned(
+            bottom: 48,
+            left: 32,
+            right: 32,
+            child: SingleChildScrollView(
+              child: Form(
+                key: formkey,
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(
+                        // left: 24,
+                        // right: 24,
+                        bottom: 6,
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(4.0),
                         ),
                         child: TextFormField(
                           onSaved: (String? inValue) {
                             username = inValue!;
                           },
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(
+                            color: Colors.black,
+                          ),
                           decoration: const InputDecoration(
                             hintText: "email",
-                            prefixIcon: Icon
-                              (Icons.person, color: Colors.white),
-                            border: OutlineInputBorder(),
-                            hintStyle:
-                            TextStyle(color:
-                            Colors.white),
+                            prefixIcon: Icon(
+                              Icons.person,
+                              color: Colors.black,
+                              size: 16,
+                            ),
+                            border: InputBorder.none,
+                            hintStyle: TextStyle(
+                              color: Colors.black,
+                            ),
                           ),
                         ),
                       ),
-                      Container(
-                        padding: const EdgeInsets.only(
-                          left: 24,
-                          right: 24,
-                          bottom: 12,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(
+                        // left: 24,
+                        // right: 24,
+                        bottom: 12,
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(4.0),
                         ),
                         child: TextFormField(
                           onSaved: (String? inValue) {
                             password = inValue!;
                           },
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(
+                            color: Colors.black,
+                          ),
                           decoration: const InputDecoration(
                             hintText: "password",
-                            prefixIcon: Icon
-                              (Icons.lock,
-                              color: Colors.white),
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(width: 0.5),
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              color: Colors.black,
+                              size: 16,
                             ),
-                            hintStyle:
-                            TextStyle(color:
-                            Colors.white),
+                            border: InputBorder.none,
+                            hintStyle: TextStyle(
+                              color: Colors.black,
+                            ),
                           ),
                         ),
                       ),
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            if (formkey.currentState!.validate()) {
-                              formkey.currentState!.save();
-                              context.read<AuthBloc>().add(LoginUser(username: username, password: password));
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.black87.withOpacity(0.7),
-                            onPrimary: Colors.white,
-                            padding: const EdgeInsets.symmetric(vertical: 24),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4.0),
-                              side: const BorderSide(width: 1, color: Colors.white30),
-                            ),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      // padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (formkey.currentState!.validate()) {
+                            formkey.currentState!.save();
+                            context.read<AuthBloc>().add(LoginUser(username: username, password: password));
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.black87.withOpacity(0.7),
+                          onPrimary: Colors.white,
+                          padding: const EdgeInsets.symmetric(vertical: 24),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4.0),
+                            side: const BorderSide(width: 1, color: Colors.white30),
                           ),
-                          child: const Text("LOGIN"),
+                        ),
+                        child: const Text("LOGIN"),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only
+                        (top: 6),
+                    ),
+
+                    Container(
+                      width: double.infinity,
+                      // padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen()));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.transparent,
+                          onPrimary: Colors.white,
+                          padding: const EdgeInsets.symmetric(vertical: 24),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(0),
+                          ),
+                        ),
+                        child: const Text(
+                            "SIGN UP",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            decoration:
+                            TextDecoration
+                                .underline,
+                          ),
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 2),
-                      ),
-                    ],
-                  ),
+                    )
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ],

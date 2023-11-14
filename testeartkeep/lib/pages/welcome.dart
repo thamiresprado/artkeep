@@ -18,69 +18,68 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('lib/images/met.png'),
+                image: AssetImage
+                  ('lib/images/welcome-bg.png'),
                 fit: BoxFit.cover,
               ),
             ),
           ),
           Positioned(
-            top: 200, //para ficar embaixo
+            // top: 200, //para ficar embaixo
             // troca pra bottom:0,
-            left: 24,
-            right: 24,
+            bottom:48,
+            left: 16,
+            right: 16,
             child: Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Hey there!",
+                  const Text(
+                    "Welcome!",
                     style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontWeight: FontWeight.w900,
+                      fontFamily: 'AlfaSlabOne',
                       fontSize: 40,
                       color: Colors.white,
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 8),
+                  const Padding(
+                    padding: EdgeInsets.only
+                      (top: 4),
                     child: Text(
-                      "Here you can visit the "
-                          "Metropolitan Art Museum without leaving your home. With just a click, embark on a journey through the epochs, witnessing the evolution of artistic movements and the pulse of cultural shifts. Whether it's the classical elegance of Renaissance masterpieces or the bold strokes of contemporary creations, the Metropolitan Art Museum beckons you to explore, learn, and be inspired, all within the confines of your virtual sanctuary.",
+                      "Here you can visit the Metropolitan Art Museum without leaving your home",
                       style: TextStyle(
                         fontFamily: 'Roboto',
-                        fontStyle: FontStyle.italic,
                         fontWeight: FontWeight.w100,
                         fontSize: 16,
                         color: Colors.white,
                       ),
                     ),
                   ),
-                  SizedBox(height: 24),
-                  // Container(
-                  //   width: double.infinity,
-                  //   padding: const EdgeInsets.symmetric(horizontal: 24),
-                  //   child: ElevatedButton(
-                  //     onPressed: () {
-                  //       Navigator.push(
-                  //         context,
-                  //         MaterialPageRoute(builder: (context) => LoginScreen()),
-                  //       );
-                  //     },
-                  //     style: ElevatedButton.styleFrom(
-                  //       primary: Colors.black87.withOpacity(0.7),
-                  //       onPrimary: Colors.white,
-                  //       padding: const EdgeInsets.symmetric(vertical: 24),
-                  //       shape: RoundedRectangleBorder(
-                  //         borderRadius: BorderRadius.circular(4.0),
-                  //         side: const BorderSide(width: 1, color: Colors.white30),
-                  //       ),
-                  //     ),
-                  //     child: const Text("START NOW"),
-                  //   ),
-                  // // ),
-                  // const SizedBox(height: 24),
+                  const SizedBox(height: 24),
+
+                  Container(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.black87.withOpacity(0.7),
+                        onPrimary: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 24),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4.0),
+                          side: const BorderSide(width: 1, color: Colors.white30),
+                        ),
+                      ),
+                      child: const Text("START NOW"),
+                                    ),
+                  ),
+
                 ],
               ),
             ),

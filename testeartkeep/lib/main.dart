@@ -15,7 +15,11 @@ void main() async {
           storageBucket: "artkeep-3a564.appspot.com",
           messagingSenderId: "133879350250",
           appId: "1:133879350250:web:859ef8d6378fb3f579a893"));
-  runApp(const MyApp());
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider<AuthBloc>(
+      create: (context) => AuthBloc(),
+    ),
+  ], child: const MyApp()));
 }
 
 // class MyApp extends StatelessWidget {
@@ -44,9 +48,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           useMaterial3: true,
         ),
-        home: MultiBlocProvider(providers: [
-          BlocProvider(create: (context) => AuthBloc()),
-        ], child: const Wrapper()),
+        home: const Wrapper(),
       debugShowCheckedModeBanner: false,);
   }
 }

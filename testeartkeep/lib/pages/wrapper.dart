@@ -49,80 +49,80 @@ class WrapperState extends State<Wrapper> {
   }
 }
 
-Widget authenticatedWidget(BuildContext context) { //LOGIN
+Widget authenticatedWidget(BuildContext context) {
   return const MainHomePage();
 }
 
-Widget unauthenticatedWidget(BuildContext context) {//LOGOUT
-  return DefaultTabController(
-    length: 3,
-    child: Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: const Text(""),
-        centerTitle: true,
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(120),
-          child: Padding(
-            padding: EdgeInsets.only(bottom: 0),
-            child: TabBar(
-              labelColor: Colors.white,
-              unselectedLabelColor: Colors.white,
-              labelStyle: TextStyle(fontWeight: FontWeight.w900),
-              unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
-              indicator: BoxDecoration(
-                border: Border(bottom: BorderSide(color: Colors.transparent, width: 3)),
-              ),
-              tabs: [
-                Tab(
-                  text: "Welcome",
-                ),
-                Tab(
-                  text: "Login",
-                ),
-                Tab(
-                  text: "SignUp",
-                ),
-              ],
-            ),
-          ),
-        ),
-        flexibleSpace: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'lib/images/login-image.png',
-                width: 72,
-                height: 72,
-              ),
-            ],
-          ),
-        ),
-      ),
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('lib/images/met.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: const TabBarView(
-          children: [
-            WelcomeScreen(),
-            LoginScreen(),
-            RegisterScreen(),
-          ],
-        ),
-      ),
-    ),
-  );
-
-}
-
 // Widget unauthenticatedWidget(BuildContext context) {
-//   return const LoginScreen();
+//   return DefaultTabController(
+//     length: 3,
+//     child: Scaffold(
+//       extendBodyBehindAppBar: true,
+//       appBar: AppBar(
+//         backgroundColor: Colors.transparent,
+//         elevation: 0,
+//         title: const Text(""),
+//         centerTitle: true,
+//         bottom: const PreferredSize(
+//           preferredSize: Size.fromHeight(120),
+//           child: Padding(
+//             padding: EdgeInsets.only(bottom: 0),
+//             child: TabBar(
+//               labelColor: Colors.white,
+//               unselectedLabelColor: Colors.white,
+//               labelStyle: TextStyle(fontWeight: FontWeight.w900),
+//               unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
+//               indicator: BoxDecoration(
+//                 border: Border(bottom: BorderSide(color: Colors.transparent, width: 3)),
+//               ),
+//               tabs: [
+//                 Tab(
+//                   text: "Welcome",
+//                 ),
+//                 Tab(
+//                   text: "Login",
+//                 ),
+//                 Tab(
+//                   text: "SignUp",
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//         flexibleSpace: Center(
+//           child: Row(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               Image.asset(
+//                 'lib/images/login-image.png',
+//                 width: 72,
+//                 height: 72,
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//       body: Container(
+//         decoration: const BoxDecoration(
+//           image: DecorationImage(
+//             image: AssetImage('lib/images/met.png'),
+//             fit: BoxFit.cover,
+//           ),
+//         ),
+//         child: const TabBarView(
+//           children: [
+//             WelcomeScreen(),
+//             LoginScreen(),
+//             RegisterScreen(),
+//           ],
+//         ),
+//       ),
+//     ),
+//   );
+//
 // }
+
+Widget unauthenticatedWidget(BuildContext context) {
+  return const WelcomeScreen();
+}
 
