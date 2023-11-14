@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:country_list_pick/country_list_pick.dart';
 
 import '../bloc/auth_bloc.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
+
+  @override
+  _RegisterScreenState createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  String selectedCountry = ''; // Certifique-se de que selectedCountry esteja declarado.
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +52,8 @@ class RegisterScreen extends StatelessWidget {
                                 alignment: Alignment.topLeft,
                                 children: [
                                   Container(
-                                    margin: const EdgeInsets.only(left: 8, top: 6, bottom: 16),
+                                    margin: const EdgeInsets.only(
+                                        left: 8, top: 6, bottom: 16),
                                     child: const Text(
                                       "FIRST NAME",
                                       style: TextStyle(
@@ -57,11 +67,15 @@ class RegisterScreen extends StatelessWidget {
                                     // },
                                     style: const TextStyle(color: Colors.white),
                                     decoration: InputDecoration(
-                                      contentPadding: const EdgeInsets.symmetric(
+                                      contentPadding: const EdgeInsets
+                                          .symmetric(
                                         vertical: 24,
                                       ),
+                                      // filled: true, // Set to true to fill the background
+                                      fillColor: Colors.white,
                                       border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(4.0),
+                                        borderRadius: BorderRadius.circular(
+                                            4.0),
                                         borderSide: const BorderSide(
                                           width: 1.0,
                                           color: Colors.white,
@@ -84,7 +98,8 @@ class RegisterScreen extends StatelessWidget {
                                 alignment: Alignment.topLeft,
                                 children: [
                                   Container(
-                                    margin: const EdgeInsets.only(left: 8, top: 6, bottom: 16),
+                                    margin: const EdgeInsets.only(
+                                        left: 8, top: 6, bottom: 16),
                                     child: const Text(
                                       "LAST NAME",
                                       style: TextStyle(
@@ -97,11 +112,13 @@ class RegisterScreen extends StatelessWidget {
                                     // },
                                     style: const TextStyle(color: Colors.white),
                                     decoration: InputDecoration(
-                                      contentPadding: const EdgeInsets.symmetric(
+                                      contentPadding: const EdgeInsets
+                                          .symmetric(
                                         vertical: 24,
                                       ),
                                       border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(4.0),
+                                        borderRadius: BorderRadius.circular(
+                                            4.0),
                                         borderSide: const BorderSide(
                                           width: 1.0,
                                           color: Colors.white,
@@ -128,7 +145,8 @@ class RegisterScreen extends StatelessWidget {
                                 alignment: Alignment.topLeft,
                                 children: [
                                   Container(
-                                    margin: const EdgeInsets.only(left: 8, top: 6, bottom: 16),
+                                    margin: const EdgeInsets.only(
+                                        left: 8, top: 6, bottom: 16),
                                     child: const Text(
                                       "DATE OF BIRTH",
                                       style: TextStyle(
@@ -143,11 +161,13 @@ class RegisterScreen extends StatelessWidget {
                                     // },
                                     style: TextStyle(color: Colors.white),
                                     decoration: InputDecoration(
-                                      contentPadding: const EdgeInsets.symmetric(
+                                      contentPadding: const EdgeInsets
+                                          .symmetric(
                                         vertical: 24,
                                       ),
                                       border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(4.0),
+                                        borderRadius: BorderRadius.circular(
+                                            4.0),
                                         borderSide: const BorderSide(
                                           width: 1.0,
                                           color: Colors.black, // Cor da borda
@@ -163,6 +183,7 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 6),
 
+                      //Countries
                       Row(
                         children: [
                           Expanded(
@@ -175,7 +196,73 @@ class RegisterScreen extends StatelessWidget {
                                 alignment: Alignment.topLeft,
                                 children: [
                                   Container(
-                                    margin: const EdgeInsets.only(left: 8, top: 6, bottom: 16),
+                                    child: const Text(
+                                      "COUNTRY",
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                  ),
+
+                                  // Positioned(
+                                  //   top: 8.0,
+                                  //   right: 0.0,
+                                  Container(
+                                    margin: const EdgeInsets.only(
+                                        left: 0, top: 0.005, bottom: 16),
+                                    height: 80,
+                                    width: MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16.0),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white.withOpacity(0.0),
+                                      // Defina a opacidade desejada (0.0 - 1.0)
+                                      borderRadius: BorderRadius.circular(4.0),
+                                      border: Border.all(
+                                        width: 1.0,
+                                        color: Colors.grey, // Cor da borda
+                                      ),
+
+                                    ),
+
+                                    child: CountryListPick(
+                                      theme: CountryTheme(
+                                        isShowFlag: false,
+                                        isShowTitle: true,
+                                        isShowCode: false,
+                                        isDownIcon: false,
+                                        showEnglishName: true,
+                                      ),
+                                      initialSelection: 'BR',
+                                    ),
+                                    // onChanged: (CountryCode code) {
+                                    //   setState(() {
+                                    //     selectedCountry = code.code!;
+                                    //   });
+                                    // },
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 6),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.only(
+                                left: 24,
+                                right: 24,
+                              ),
+                              child: Stack(
+                                alignment: Alignment.topLeft,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(
+                                        left: 8, top: 6, bottom: 16),
                                     child: const Text(
                                       "EMAIL",
                                       style: TextStyle(
@@ -191,11 +278,13 @@ class RegisterScreen extends StatelessWidget {
                                     },
                                     style: TextStyle(color: Colors.white),
                                     decoration: InputDecoration(
-                                      contentPadding: const EdgeInsets.symmetric(
+                                      contentPadding: const EdgeInsets
+                                          .symmetric(
                                         vertical: 24,
                                       ),
                                       border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(4.0),
+                                        borderRadius: BorderRadius.circular(
+                                            4.0),
                                         borderSide: const BorderSide(
                                           width: 1.0,
                                           color: Colors.black, // Cor da borda
@@ -222,7 +311,8 @@ class RegisterScreen extends StatelessWidget {
                                 alignment: Alignment.topLeft,
                                 children: [
                                   Container(
-                                    margin: const EdgeInsets.only(left: 8, top: 6, bottom: 16),
+                                    margin: const EdgeInsets.only(
+                                        left: 8, top: 6, bottom: 16),
                                     child: const Text(
                                       "PASSWORD",
                                       style: TextStyle(
@@ -238,11 +328,13 @@ class RegisterScreen extends StatelessWidget {
                                     },
                                     style: TextStyle(color: Colors.white),
                                     decoration: InputDecoration(
-                                      contentPadding: const EdgeInsets.symmetric(
+                                      contentPadding: const EdgeInsets
+                                          .symmetric(
                                         vertical: 24,
                                       ),
                                       border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(4.0),
+                                        borderRadius: BorderRadius.circular(
+                                            4.0),
                                         borderSide: const BorderSide(
                                           width: 1.0,
                                           color: Colors.black, // Cor da borda
@@ -266,7 +358,8 @@ class RegisterScreen extends StatelessWidget {
                             if (formKey.currentState!.validate()) {
                               formKey.currentState!.save();
                               BlocProvider.of<AuthBloc>(context)
-                                  .add(RegisterUser(username: username, password: password));
+                                  .add(RegisterUser(
+                                  username: username, password: password));
                             }
                           },
                           style: ElevatedButton.styleFrom(
@@ -275,7 +368,8 @@ class RegisterScreen extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(vertical: 24),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(4.0),
-                              side: const BorderSide(width: 1, color: Colors.white30),
+                              side: const BorderSide(
+                                  width: 1, color: Colors.white30),
                             ),
                           ),
                           child: const Text

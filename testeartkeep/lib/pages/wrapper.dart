@@ -49,11 +49,11 @@ class WrapperState extends State<Wrapper> {
   }
 }
 
-Widget authenticatedWidget(BuildContext context) {
+Widget authenticatedWidget(BuildContext context) { //LOGIN
   return const MainHomePage();
 }
 
-Widget unauthenticatedWidget(BuildContext context) {
+Widget unauthenticatedWidget(BuildContext context) {//LOGOUT
   return DefaultTabController(
     length: 3,
     child: Scaffold(

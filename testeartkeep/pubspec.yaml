@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  country_list_pick: ^1.0.1+6
 
   cupertino_icons: ^1.0.2
   firebase_core: ^2.21.0
@@ -43,7 +44,15 @@ flutter:
     - lib/images/art2.png
     - lib/images/art3.png
     - lib/images/art4.png
+    - lib/images/avatar.png
+    - lib/images/avatar.svg
     - lib/images/image-8.png
     - lib/images/login-image.png
     - lib/images/rectangle-black.png
     - lib/images/met.png
+#
+#  fonts:
+#    - family: Alfa Slab One
+#      fonts:
+#        - asset: lib/fonts/AlfaSlabOne-Regular.ttf
+
