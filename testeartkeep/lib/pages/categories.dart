@@ -1,17 +1,24 @@
+// categories.dart
 import 'package:flutter/material.dart';
+import 'categories-details.dart';
+
+class CategoriesList {
+  static List<String> categories = ['African', 'American', 'Asian'];
+}
 
 class CategoriesPage extends StatelessWidget {
   const CategoriesPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           children: [
             AppBarWidget(),
             Expanded(
-              child: CategoriesList(),
+              child: CategoriesListWidget(),
             ),
           ],
         ),
@@ -55,8 +62,8 @@ class AppBarWidget extends StatelessWidget {
   }
 }
 
-class CategoriesList extends StatelessWidget {
-  const CategoriesList({Key? key}) : super(key: key);
+class CategoriesListWidget extends StatelessWidget {
+  const CategoriesListWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -119,27 +126,6 @@ class CategoryItem extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class CategoryDetailPage extends StatelessWidget {
-  final String category;
-
-  CategoryDetailPage(this.category);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(category),
-      ),
-      body: Center(
-        child: Text(
-          'Works related to $category will be displayed here.',
-          style: TextStyle(fontSize: 18),
         ),
       ),
     );
