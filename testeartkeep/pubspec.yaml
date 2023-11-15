@@ -11,6 +11,11 @@ dependencies:
   flutter:
     sdk: flutter
 
+  intl: ^0.17.0
+#  intl_date_format: ^2.0.1
+
+  flutter_datetime_picker: ^1.4.0
+
   country_list_pick: ^1.0.1+6
 
   cupertino_icons: ^1.0.2
