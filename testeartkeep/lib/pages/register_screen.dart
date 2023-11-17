@@ -12,7 +12,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  String selectedCountry = ''; // Certifique-se de que selectedCountry esteja declarado.
+  String selectedCountry = ''; 
   bool light = false;
 
 

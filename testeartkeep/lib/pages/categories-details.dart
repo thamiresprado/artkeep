@@ -15,8 +15,8 @@ class CategoryDetailPage extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets
-                  .fromLTRB(0, 24, 16, 8),
+              color: Color(0xFFFAFAFA),
+              padding: const EdgeInsets.fromLTRB(0, 24, 16, 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,

@@ -14,103 +14,222 @@ class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
-        child: Stack(
+        child: Column(
           children: [
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              height: 280.0,
+            Container(
+              height: 60,
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  Image.asset(
-                    'lib/images/foryou-1.png',
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                  ),
                   Container(
-                    color: Colors.black.withOpacity(0.7),
+                    color: const Color(0xFFFAFAFA),
+                  ),
+                  Positioned(
+                    top: 20.0,
+                    left: 16.0,
+                    right: 16.0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            widget.navigator.pop();
+                          },
+                          child: const Icon(
+                            Icons.arrow_back,
+                            size: 32.0,
+                            color: Colors.black,
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            _showBottomSheet();
+                          },
+                          child: const Icon(
+                            Icons.star_border,
+                            size: 32.0,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
 
-            // AppBar
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 16.0),
-              padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      widget.navigator.pop(); // Voltar para a página anterior
-                    },
-                    child: const Icon(
-                      Icons.arrow_back,
-                      size: 32.0,
-                      color: Colors.white,
-                    ),
-                  ),
-
-                  GestureDetector(
-                    onTap: () {
-                      _showBottomSheet();//salvar em pasta
-                    },
-                    child: const Icon(
-                      Icons.star_border,
-                      size: 32.0,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            Positioned( // Titulo e obra
-              left: 20.0,
-              right: 20.0,
-              bottom: MediaQuery.of(context).size.height * 0.72 - 100.0,
-              height: 180.0,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(4.0),
-                  border: Border.all(
-                    color: Colors.grey,
-                    width: 0.3,
-                  ),
-                ),
-                padding: EdgeInsets.all(16.0),
-                child: Row(
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
                   children: [
+                    // Titulo e obra
                     Container(
-                      width: 150,
-                      height: 150,
-                      margin: const EdgeInsets.only(right: 12.0),
                       decoration: BoxDecoration(
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(4.0),
-                    ),
-                      child: Image.asset(
-                        'lib/images/foryou-1.png',
-                        fit: BoxFit.cover,
-                        width: double.infinity,
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 0.3,
+                        ),
+                      ),
+                      margin: const EdgeInsets.all(16.0),
+                      padding: EdgeInsets.all(16.0),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 150,
+                            height: 150,
+                            margin: const EdgeInsets.only(right: 12.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4.0),
+                            ),
+                            child: Image.asset(
+                              'lib/images/foryou-1.png',
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                            ),
+                          ),
+                          const Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Annunciation Triptych (Merode Altarpiece)',
+                                  style: TextStyle(
+                                    fontSize: 26.0,
+                                    fontWeight: FontWeight.w900,
+                                    height: 1.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    const Expanded(
+
+                    // Carrossel
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 250,
+                            height: 250,
+                            margin: const EdgeInsets.only(left: 20),
+                            child: Image.asset(
+                              'lib/images/art2.png',
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                            ),
+                          ),
+                          Container(
+                            width: 250,
+                            height: 250,
+                            margin: const EdgeInsets.only(left: 8),
+                            child: Image.asset(
+                              'lib/images/art1.png',
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                            ),
+                          ),
+                          Container(
+                            width: 250,
+                            height: 250,
+                            margin: const EdgeInsets.only(left: 8),
+                            child: Image.asset(
+                              'lib/images/art3.png',
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                            ),
+                          ),
+                          Container(
+                            width: 250,
+                            height: 250,
+                            margin: const
+                            EdgeInsets.only
+                              (left: 8, right: 16),
+                            child: Image.asset(
+                              'lib/images/art4.png',
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    SizedBox(height: 40),
+
+                    // Informações sobre a obra
+                    Container(
+                      margin: const EdgeInsets.only(left: 16.0, right: 16.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Título "About the piece"
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            margin: const EdgeInsets.only(right: 16.0),
+                            child: const Text(
+                              'About the piece',
+                              style: TextStyle(
+                                fontFamily: 'AlfaSlabOne',
+                                fontSize: 40.0,
+                                height: 0.8,
+                              ),
+                              textAlign: TextAlign.right,
+                            ),
+                          ),
+                          // Informações sobre a peça
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                _buildInfoRow('ARTIST', 'Workshop of Robert Campin (Netherlandish, ca. 1375–1444 Tournai)'),
+                                _buildInfoRow('DATE', 'ca. 1427–32'),
+                                _buildInfoRow('GEOGRAPHY', 'Made in Tournai, South Netherlands'),
+                                _buildInfoRow('CULTURE', 'South Netherlandish'),
+                                _buildInfoRow('MEDIUM', 'Oil on oak'),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    SizedBox(height: 32),
+
+                    // Seção de comentários
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets
+                          .fromLTRB(16.0, 24,
+                          16.0, 16.0),
+                      color: const Color
+                        (0xFFF5F5F5),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment:MainAxisAlignment.center,
                         children: [
-                          Text(
-                            'Annunciation Triptych (Merode Altarpiece)',
+                          const Text(
+                            'comments',
                             style: TextStyle(
-                              fontSize: 26.0,
-                              fontWeight: FontWeight.w900,
-                              height: 1.0,
+                              fontFamily: 'AlfaSlabOne',
+                              fontSize: 24.0,
                             ),
+                          ),
+                          CommentWidget(
+                            userName: 'John Doe',
+                            time: '2h ago',
+                            comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                          ),
+                          CommentWidget(
+                            userName: 'Jane Smith',
+                            time: '1h ago',
+                            comment: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                           ),
                         ],
                       ),
@@ -119,260 +238,103 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
               ),
             ),
-
-            Align( //carrossel
-              alignment: const Alignment(0, 0.15),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 250,
-                        height: 250,
-                        margin: const EdgeInsets.only(left: 20),
-                        child: Image.asset(
-                          'lib/images/art2.png',
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                        ),
-                      ),
-                      Container(
-                        width: 250,
-                        height: 250,
-                        margin: const EdgeInsets.only(left: 8),
-                        child: Image.asset(
-                          'lib/images/art1.png',
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                        ),
-                      ),
-                      Container(
-                        width: 250,
-                        height: 250,
-                        margin: const EdgeInsets.only(left: 8),
-                        child: Image.asset(
-                          'lib/images/art3.png',
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                        ),
-                      ),
-                      Container(
-                        width: 250,
-                        height: 250,
-                        margin: const EdgeInsets.only(left: 8, right: 20),
-                        child: Image.asset(
-                          'lib/images/art4.png',
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
           ],
         ),
       ),
     );
   }
-  void _showBottomSheet() {
-    setState(() {
-      _isBottomSheetVisible = true;
-    });
 
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return Container(
-          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-          child: Column(
+  Widget _buildInfoRow(String title, String description) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 12.0,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          Text(
+            description,
+            style: const TextStyle(
+              fontSize: 12.0,
+              fontWeight: FontWeight.w100,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showBottomSheet() {
+    // ... (código anterior)
+  }
+}
+
+class CommentWidget extends StatelessWidget {
+  final String userName;
+  final String time;
+  final String comment;
+
+  CommentWidget({
+    required this.userName,
+    required this.time,
+    required this.comment,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 16.0),
+      padding: const EdgeInsets.symmetric
+        (horizontal: 16.0, vertical: 8.0),
+      color: Colors.white,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
             children: [
-              Container(
-                alignment: Alignment.center,
-                margin: const EdgeInsets.only(top: 12.0),
-                child: const Text(
-                  'Salvar na pasta',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+              // Imagem do usuário
+              CircleAvatar(
+                radius: 16.0,
+                // Substitua a linha abaixo pela lógica real de obtenção da imagem do usuário
+                backgroundImage: AssetImage('lib/images/user_avatar.png'),
+              ),
+              SizedBox(width: 4.0),
+              // Nome do usuário
+              Text(
+                userName,
+                style: TextStyle(
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 48.0,
-                    height: 48.0,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFE1E1E1),
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 16.0),
-                      child: const Text(
-                        'Pasta 1',
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 12),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 48.0,
-                    height: 48.0,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFE1E1E1),
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 16.0),
-                      child: const Text(
-                        'Pasta 2',
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 12),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 48.0,
-                    height: 48.0,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFE1E1E1),
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 16.0),
-                      child: const Text(
-                        'Pasta 3',
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 12),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 48.0,
-                    height: 48.0,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFE1E1E1),
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 16.0),
-                      child: const Text(
-                        'Pasta 4',
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 12),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 48.0,
-                    height: 48.0,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFE1E1E1),
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 16.0),
-                      child: const Text(
-                        'Pasta 5',
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 48),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 48.0,
-                    height: 48.0,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black,
-                        width: 1.0,
-                      ),
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                    child: const Center(
-                      child: Icon(
-                        Icons.add,
-                        size: 24.0,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 16.0),
-                      child: const Text(
-                        'Criar nova pasta',
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+              Spacer(), // Espaço flexível para empurrar a hora para a direita
+              // Hora do comentário
+              Text(
+                time,
+                style: TextStyle(
+                  fontSize: 12.0,
+                  color: Colors.grey,
+                ),
               ),
             ],
           ),
-        );
-      },
+          SizedBox(height: 12.0),
+          // Comentário
+          Text(
+            comment,
+            style: TextStyle(
+              fontSize: 12.0,
+              fontWeight: FontWeight.w200,
+              fontFamily: 'Roboto',
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

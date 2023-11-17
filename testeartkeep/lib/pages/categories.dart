@@ -34,7 +34,7 @@ class AppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 32, 16, 24),
-      color: Colors.white,
+      color: Color(0xFFFAFAFA),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
