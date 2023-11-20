@@ -12,9 +12,8 @@ dependencies:
     sdk: flutter
 
   intl: ^0.17.0
+#  flutter_datetime_picker: ^1.5.1
 #  intl_date_format: ^2.0.1
-
-  flutter_datetime_picker: ^1.4.0
 
   country_list_pick: ^1.0.1+6
 
@@ -60,4 +59,6 @@ flutter:
     - lib/images/rectangle-black.png
     - lib/images/met.png
     - lib/images/welcome-bg.png
-    - lib/images/avatar.png
+    - lib/images/avatar1.png
+    - lib/images/avatar2.png
+    - lib/images/avatar3.png

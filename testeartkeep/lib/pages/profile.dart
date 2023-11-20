@@ -13,118 +13,207 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-      Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            height: 126,
-            color: Colors.black87,
-            child: ElevatedButton(
-              onPressed: () {
-                BlocProvider.of<AuthBloc>(context).add(Logout());
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Colors.transparent,
-                onPrimary: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 24),
-                shape: const RoundedRectangleBorder(
-                  side: BorderSide(width: 1, color: Colors.black),
-                ),
-              ),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Icon(Icons.logout),
-                  SizedBox(width: 8),
-                ],
-              ),
-            ),
-          ),
-
-
-
-
-
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-            child: Container(
-              decoration: BoxDecoration(
-                // color: Colors.purpleAccent,
-                borderRadius: BorderRadius.circular(10), // Ajuste o valor conforme necessário
-                border: Border.all(width: 1, color: Colors.black),
-              ),
-              height: 104,
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Column(
+          children: [
+            Container(
+              color: Colors.black,
+              padding: const EdgeInsets.fromLTRB(0, 12, 16, 8),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'lib/images/avatar.png',
-                    width: 72,
-                    height: 72,
+                  IconButton(
+                    icon: const Icon(Icons.logout),
+                    onPressed: () {
+                      BlocProvider.of<AuthBloc>(context).add(Logout());
+                    },
+                    iconSize: 25,
+                    color: Colors.white70,
                   ),
-                  const SizedBox(width: 16),
-                  const Text(
-                    'Mari Araújo',
-                    style: TextStyle(
-                      fontSize: 24.0, // Tamanho da fonte
-                      fontFamily: 'AlfaSlabOne',
-                    ),
-                  ),
-                  const Text(
-                    '',
-                    style: TextStyle(
-
-                      fontSize: 12.0, // Tamanho da fonte
-                      fontWeight: FontWeight.w200, // Peso da fonte
-                    ),
-                  ),
+                  SizedBox(width: 16),
                 ],
               ),
             ),
-          ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(4.0),
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 0.3,
+                        ),
+                      ),
+                      margin: const EdgeInsets.all(16.0),
+                      padding: EdgeInsets.all(16.0),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 150,
+                            height: 150,
+                            margin: const EdgeInsets.only(right: 12.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4.0),
+                            ),
+                            child: Image.asset(
+                              'lib/images/avatar3.png',
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                            ),
 
-
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-            child: Container(
-              decoration: BoxDecoration(
-                // color: Colors.red,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              height: 200,
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(height: 16),
-                  Padding(padding: const EdgeInsets.only(left: 8), // Adiciona espaço à esquerda do texto
-                    child: Text(
-                      ' ',
-                      style: TextStyle(
-                        fontSize: 24.0,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Alfa Slab One',
+                          ),
+                          const Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'John Brown',
+                                  style: TextStyle(
+                                    fontSize: 26.0,
+                                    fontWeight: FontWeight.w900,
+                                    height: 1.0,
+                                  ),
+                                ),
+                                SizedBox(height: 2),
+                                Text(
+                                  '@john1010',
+                                  style: TextStyle(
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.w100,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  )
-                  // Text(
-                  //   'NAME',
-                  //   style: TextStyle(
-                  //     fontSize: 16.0,
-                  //     fontWeight: FontWeight.bold,
-                  //     fontFamily: 'Alfa Slab One',
-                  //   ),
-                  // ),
-                  // Text(
-                  //   'Mari Araújo',
-                  //   style: TextStyle(
-                  //     fontSize: 10.0,
-                  //     fontWeight: FontWeight.bold,
-                  //     fontFamily: 'Alfa Slab One',
-                  //   ),
-                  // ),
-                ],
+
+                    SizedBox(height: 40),
+
+                    // Informações sobre a obra
+                    Container(
+                      margin: const EdgeInsets.only(left: 16.0, right: 16.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Título "About the piece"
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            margin: const EdgeInsets.only(right: 16.0),
+                            child: const Text(
+                              'About me',
+                              style: TextStyle(
+                                fontFamily: 'AlfaSlabOne',
+                                fontSize: 40.0,
+                                height: 0.8,
+                              ),
+                              textAlign: TextAlign.right,
+                            ),
+                          ),
+                          // Informações sobre a peça
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                _buildInfoRow('NAME', 'John Brown'),
+                                _buildInfoRow('BIRTHDAY', '24/05/1996'),
+                                _buildInfoRow('E-MAIL', 'johnbrown@gmail.com'),
+                                _buildInfoRow('COUNTRY', 'Brazil'),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    SizedBox(height: 32),
+
+                    //Carrossel Arts
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 200,
+                            height: 200,
+                            margin: const EdgeInsets.only(left: 20),
+                            child: Image.asset(
+                              'lib/images/art1.png',
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                            ),
+                          ),
+                          Container(
+                            width: 200,
+                            height: 200,
+                            margin: const EdgeInsets.only(left: 8),
+                            child: Image.asset(
+                              'lib/images/art2.png',
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                            ),
+                          ),
+                          Container(
+                            width: 200,
+                            height: 200,
+                            margin: const EdgeInsets.only(left: 8),
+                            child: Image.asset(
+                              'lib/images/art3.png',
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                            ),
+                          ),
+                          Container(
+                            width: 200,
+                            height: 200,
+                            margin: const
+                            EdgeInsets.only
+                              (left: 8, right: 16),
+                            child: Image.asset(
+                              'lib/images/art4.png',
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 50),
+                  ],
+                ),
               ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoRow(String title, String description) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 12.0,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          Text(
+            description,
+            style: const TextStyle(
+              fontSize: 12.0,
+              fontWeight: FontWeight.w100,
             ),
           ),
         ],

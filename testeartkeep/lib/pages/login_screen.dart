@@ -15,6 +15,8 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
   String username = "";
   String password = "";
   TabController? _tabController;
+  bool _obscureText = true;
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   void initState() {
@@ -43,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
           ),
 
           Positioned(
-            top: 48,
+            top: 90,
             left: MediaQuery.of(context).size.width / 2 - 50, // Ajuste o valor conforme necessário
             child: Image.asset(
               'lib/images/login-image.png',
@@ -94,10 +96,9 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                         ),
                       ),
                     ),
+
                     Container(
                       padding: const EdgeInsets.only(
-                        // left: 24,
-                        // right: 24,
                         bottom: 12,
                       ),
                       child: Container(
@@ -106,27 +107,40 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                           borderRadius: BorderRadius.circular(4.0),
                         ),
                         child: TextFormField(
+                          controller: _passwordController,
                           onSaved: (String? inValue) {
                             password = inValue!;
                           },
                           style: const TextStyle(
                             color: Colors.black,
                           ),
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             hintText: "password",
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.lock,
                               color: Colors.black,
                               size: 16,
                             ),
                             border: InputBorder.none,
-                            hintStyle: TextStyle(
+                            hintStyle: const TextStyle(
                               color: Colors.black,
                             ),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _obscureText ? Icons.visibility : Icons.visibility_off,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              },
+                            ),
                           ),
+                          obscureText: _obscureText,
                         ),
                       ),
                     ),
+
                     Container(
                       width: double.infinity,
                       // padding: const EdgeInsets.symmetric(horizontal: 24),
