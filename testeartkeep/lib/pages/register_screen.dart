@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:country_list_pick/country_list_pick.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+
 import 'package:intl/intl.dart';
+import 'package:testeartkeep/pages/login_screen.dart';
+
 // import 'package:date_time_picker/date_time_picker.dart';
 // // import 'package:flutter_datetime_picker/flutter_datetime_picker.dart'
 //     // show DatePicker, DatePickerTheme, LocaleType;
@@ -24,8 +28,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController _countryController = TextEditingController();
   String _selectedCountry = 'BR'; // País padrão
 
-  // DateTime _selectedDate = DateTime.now();
-  // TextEditingController _dateController = TextEditingController();
+  var maskFormatter = new MaskTextInputFormatter(
+      mask: '##/##/####', filter: {"#": RegExp(r'[0-9]')});
 
   final MaterialStateProperty<Icon?> thumbIcon =
       MaterialStateProperty.resolveWith<Icon?>(
@@ -54,42 +58,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
           ),
-          Positioned(
-            top: 70,
-            left: MediaQuery.of(context).size.width / 2 -
-                50, // Ajuste o valor conforme necessário
-            child: Image.asset(
-              'lib/images/login-image.png',
-              width: 100,
-              height: 100,
-            ),
-          ),
           SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.only(top: 180),
+              padding: const EdgeInsets.only(top: 70),
               child: Column(
                 children: [
                   Form(
                     key: formKey,
                     child: Column(
                       children: [
-                        Container(
-                          padding: const EdgeInsets.fromLTRB(0, 12, 16, 8),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                icon: Icon(Icons.arrow_back),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                iconSize: 32,
-                                color: Colors.white,
-                              ),
-                            ],
+                        const Center(
+                          child: Text(
+                            'Register here to begin the immersion',
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.w300,
+                              fontSize: 16,
+                              color: Colors.white,
                           ),
-                        ),
+                        )),
+                        const Center(
+                              child: Text(
+                                ' in beautiful artworks!',
+                                style: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                ),
+                            )),
                         Row(
                           children: [
                             Expanded(
@@ -116,6 +113,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       child: TextFormField(
                                         // onSaved: (String? inValue) {
                                         // },
+                                        style: TextStyle(color: Colors.white),
                                         decoration: InputDecoration(
                                           contentPadding:
                                               const EdgeInsets.symmetric(
@@ -211,8 +209,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       ),
                                     ),
                                     TextFormField(
-                                      //controller: _dateController,
-                                      style: TextStyle(color: Colors.white10),
+                                      inputFormatters: [maskFormatter],
+                                      style: TextStyle(color: Colors.white),
                                       decoration: InputDecoration(
                                         // suffixIcon: IconButton(
                                         //   icon: Icon(Icons.calendar_today),
@@ -290,14 +288,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           isShowCode: false,
                                           isDownIcon: false,
                                           showEnglishName: true,
-                                          // textStyleSelected: const TextStyle(color: Colors.red),
                                         ),
+
                                         initialSelection: _selectedCountry,
                                         onChanged: (value) {
-                                          setState(() {
-                                            _selectedCountry = value // Atualiza o país selecionado
-                                            _countryController.text = value as String; // Atualiza o texto do controlador
-                                          });
+                                          //print(_selectedCountry);
+                                          //_selectedCountry = value // Atualiza o país selecionado
+                                          //   _countryController.text = value; // Atualiza o texto do controlador
                                         },
                                       ),
                                     ),
@@ -489,7 +486,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Container(
                           width: double.infinity,
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 24, vertical: 24),
+                              horizontal: 24, vertical: 5),
                           child: ElevatedButton(
                             onPressed: () {
                               if (formKey.currentState!.validate()) {
@@ -503,7 +500,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             style: ElevatedButton.styleFrom(
                               primary: Colors.black87.withOpacity(0.7),
                               onPrimary: Colors.white,
-                              padding: const EdgeInsets.symmetric(vertical: 24),
+                              padding: const EdgeInsets.symmetric(vertical: 17),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(4.0),
                                 side: const BorderSide(
@@ -511,6 +508,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               ),
                             ),
                             child: const Text("SIGN IN"),
+                          ),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 24, vertical: 5),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const LoginScreen()),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.black87.withOpacity(0.7),
+                              onPrimary: Colors.white,
+                              padding: const EdgeInsets.symmetric(vertical: 17),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4.0),
+                                side: const BorderSide(
+                                    width: 1, color: Colors.white30),
+                              ),
+                            ),
+                            child: const Text("BACK"),
                           ),
                         ),
                         SizedBox(height: 24),
@@ -526,20 +548,4 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
   }
-
-  // Future<void> _selectDate(BuildContext context) async {
-  //   DateTime? picked = await showDatePicker(
-  //     context: context,
-  //     initialDate: _selectedDate ?? DateTime.now(),
-  //     firstDate: DateTime(2000),
-  //     lastDate: DateTime(2101),
-  //   );
-  //
-  //   if (picked != null && picked != _selectedDate) {
-  //     setState(() {
-  //       _selectedDate = picked;
-  //       _dateController.text = DateFormat('dd/MM/yyyy').format(_selectedDate);
-  //     });
-  //   }
-  // }
 }
