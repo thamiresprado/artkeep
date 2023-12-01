@@ -301,7 +301,7 @@ class CommentWidget extends StatelessWidget {
               CircleAvatar(
                 radius: 16.0,
                 // Substitua a linha abaixo pela lógica real de obtenção da imagem do usuário
-                backgroundImage: AssetImage('lib/images/user_avatar.png'),
+                backgroundImage: AssetImage('lib/images/avatar.png'),
               ),
               SizedBox(width: 4.0),
               // Nome do usuário

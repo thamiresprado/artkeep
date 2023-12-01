@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:testeartkeep/pages/welcome.dart';
 import 'bloc/auth_bloc.dart';
-import 'pages/wrapper.dart';
 import 'mainhomepage.dart';
+import 'pages/wrapper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,14 +45,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'ArtKeep',
-        theme: ThemeData(
-          useMaterial3: true,
-        ),
-        home: const Wrapper(),
-      debugShowCheckedModeBanner: false,);
+      title: 'ArtKeep',
+      theme: ThemeData(
+        useMaterial3: true,
+      ),
+      initialRoute: '/welcome',
+      routes: {
+        '/welcome': (context) => WelcomeScreen(),
+        '/mainHomePage': (context) =>
+            MainHomePage(),
+      },
+      home: const Wrapper(),
+      debugShowCheckedModeBanner: false,
+    );
   }
-}
+  }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});

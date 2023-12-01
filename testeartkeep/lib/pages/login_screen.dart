@@ -145,9 +145,11 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                       width: double.infinity,
                       // padding: const EdgeInsets.symmetric(horizontal: 24),
                       child: ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (formkey.currentState!.validate()) {
                             formkey.currentState!.save();
+
+                            // Adicione o evento de autenticação ao AuthBloc
                             context.read<AuthBloc>().add(LoginUser(username: username, password: password));
                           }
                         },

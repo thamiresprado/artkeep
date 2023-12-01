@@ -10,6 +10,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   AuthBloc() : super(Unauthenticated()) {
     _authenticationService.user.listen((event) {
+      print("asdf");
       add(AuthServerEvent(event));
     });
 
@@ -17,6 +18,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (event.userModel == null) {
         emit(Unauthenticated());
       } else {
+        print("emitindo");
+
         //FirestoreDatabase.helper.uid = event.userModel!.uid;
         emit(Authenticated(userModel: event.userModel!));
       }
@@ -56,7 +59,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       try {
         await _authenticationService.signOut();
       } catch (e) {
-        emit(AuthError(message: "Impossível Efeturar Logout: ${e.toString()}"));
+        emit(AuthError(message: "Impossível Efetuar Logout: ${e.toString()}"));
       }
     });
   }

@@ -295,7 +295,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         initialSelection: _selectedCountry,
                                         onChanged: (value) {
                                           setState(() {
-                                            _selectedCountry = value // Atualiza o país selecionado
+                                            _selectedCountry = value as String; // Atualiza o país selecionado
                                             _countryController.text = value as String; // Atualiza o texto do controlador
                                           });
                                         },

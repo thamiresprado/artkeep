@@ -27,6 +27,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   IconButton(
                     icon: const Icon(Icons.logout),
                     onPressed: () {
+                      Navigator.popUntil(context, ModalRoute.withName('/welcome'));
                       BlocProvider.of<AuthBloc>(context).add(Logout());
                     },
                     iconSize: 25,
