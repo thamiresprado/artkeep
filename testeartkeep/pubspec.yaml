@@ -11,11 +11,12 @@ dependencies:
   flutter:
     sdk: flutter
 
+  mask_text_input_formatter: ^2.6.0
   intl: ^0.17.0
+  country_list_pick: ^1.0.1+6
+
 #  flutter_datetime_picker: ^1.5.1
 #  intl_date_format: ^2.0.1
-
-  country_list_pick: ^1.0.1+6
 
   cupertino_icons: ^1.0.2
   firebase_core: ^2.21.0
@@ -62,3 +63,13 @@ flutter:
     - lib/images/avatar1.png
     - lib/images/avatar2.png
     - lib/images/avatar3.png
+    - lib/images/avatar4.png
+    - lib/images/avatar5.png
+    - lib/images/avatar6.png
+    - lib/images/avatar7.png
+    - lib/images/avatar8.png
+    - lib/images/avatar9.png
+    - lib/images/avatar10.png
+    - lib/images/avatar11.png
+    - lib/images/avatar12.png
+    - lib/images/avatar2.svg

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:testeartkeep/pages/select_avatar.dart';
 import '../bloc/auth_bloc.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -61,12 +62,19 @@ class _ProfilePageState extends State<ProfilePage> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4.0),
                             ),
-                            child: Image.asset(
-                              'lib/images/avatar3.png',
-                              fit: BoxFit.cover,
-                              width: double.infinity,
+                            child: InkWell(
+                              onTap: () {
+                                // Adicione aqui a navegação para a próxima página ao clicar na imagem do avatar
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => SelectAvatarPage()),
+                                );                              },
+                              child: Image.asset(
+                                'lib/images/avatar3.png',
+                                fit: BoxFit.cover,
+                                width: double.infinity,
+                              ),
                             ),
-
                           ),
                           const Expanded(
                             child: Column(
@@ -95,9 +103,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ],
                       ),
                     ),
-
                     SizedBox(height: 40),
-
                     // Informações sobre a obra
                     Container(
                       margin: const EdgeInsets.only(left: 16.0, right: 16.0),
@@ -133,9 +139,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ],
                       ),
                     ),
-
                     SizedBox(height: 32),
-
                     //Carrossel Arts
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -174,9 +178,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           Container(
                             width: 200,
                             height: 200,
-                            margin: const
-                            EdgeInsets.only
-                              (left: 8, right: 16),
+                            margin: const EdgeInsets.only(left: 8, right: 16),
                             child: Image.asset(
                               'lib/images/art4.png',
                               fit: BoxFit.cover,
@@ -219,6 +221,38 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ],
       ),
+    );
+  }
+  Future<void> _showConfirmationDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(''),
+          content: const SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Tem certeza que deseja sair?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('NÃO'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('SIM'),
+              onPressed: () {
+                BlocProvider.of<AuthBloc>(context).add(Logout());
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

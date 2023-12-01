@@ -7,6 +7,7 @@ import 'mainhomepage.dart';
 import 'pages/wrapper.dart';
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
       options: const FirebaseOptions(
