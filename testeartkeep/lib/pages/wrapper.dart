@@ -20,7 +20,6 @@ class WrapperState extends State<Wrapper> {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthError) {
-          // Exiba um diálogo de erro, se necessário
           showDialog(
             context: context,
             builder: (context) {
@@ -31,7 +30,6 @@ class WrapperState extends State<Wrapper> {
             },
           );
         } else if (state is Authenticated) {
-          // Se autenticado, navegue para a tela principal
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => MainHomePage()),
@@ -39,7 +37,6 @@ class WrapperState extends State<Wrapper> {
         }
       },
       builder: (context, state) {
-        // Renderize a tela adequada com base no estado atual
         if (state is Authenticated) {
           return authenticatedWidget(context);
         } else {
@@ -51,11 +48,9 @@ class WrapperState extends State<Wrapper> {
 }
 
 Widget authenticatedWidget(BuildContext context) {
-  // Renderize a tela principal ou qualquer outra tela necessária para usuários autenticados
   return const MainHomePage();
 }
 
 Widget unauthenticatedWidget(BuildContext context) {
-  // Renderize a tela de boas-vindas ou qualquer outra tela necessária para usuários não autenticados
   return const WelcomeScreen();
 }
