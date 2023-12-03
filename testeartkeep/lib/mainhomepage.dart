@@ -1,183 +1,70 @@
 import 'package:flutter/material.dart';
-import 'package:testeartkeep/pages/art-details.dart';
-import 'package:testeartkeep/pages/categories.dart';
-import 'package:testeartkeep/widgets/appbar.dart';
-import 'package:testeartkeep/widgets/bottomnavigationbar.dart';
+import 'package:testeartkeep/pages/homepage.dart';
+import 'package:testeartkeep/pages/pieces.dart';
+import 'package:testeartkeep/pages/profile.dart';
+import 'package:testeartkeep/pages/search.dart';
+import 'package:testeartkeep/pages/select_avatar.dart';
 
 class MainHomePage extends StatefulWidget {
-  const MainHomePage({Key? key}) : super(key: key);
+  const MainHomePage({super.key});
 
   @override
   _MainHomePageState createState() => _MainHomePageState();
 }
 
-class _MainHomePageState extends State<MainHomePage> {
+class _MainHomePageState extends State<MainHomePage>{
   int pageIndex = 0;
-
-  void _navigateToDetailPage() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) {
-          return DetailsPage(navigator: Navigator.of(context));
-        },
-      ),
-    );
-  }
+  final List<Widget> tabList = [
+    HomePage(),
+    PiecesPage(),
+    ProfilePage(),
+  ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
-      appBar: CustomAppBar(
-      title: '',
-      icon: Icons.menu,
-        onTap: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => CategoriesPage()),
-          );
-        },
-        automaticallyImplyLeading: false,
-    ),
-
       body: Stack(
         children: [
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(left: 80, top: 24, right: 0),
-                  height: 428.0,
-                  child: Image.asset('lib/images/principal-image.png'),
+          tabList.elementAt(pageIndex),
+          Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: Align(
+              alignment: const Alignment(0.0, 1.0),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(30),
                 ),
-                const SizedBox(height: 80),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Image.asset('lib/images/the-met.png', fit: BoxFit.cover),
-                ),
-                const SizedBox(height: 12),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  child: const Text(
-                    "One of the world's largest and finest art museums. Its collection spans 5,000 years of world culture, from prehistory to the present and from every part of the globe.",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w200,
-                      height: 1.4,
+                child: BottomNavigationBar(
+                  selectedItemColor: Colors.white,
+                  unselectedItemColor: Colors.grey,
+                  showSelectedLabels: true,
+                  showUnselectedLabels: false,
+                  backgroundColor: Colors.black,
+                  currentIndex: pageIndex,
+                  onTap: (int index) {
+                    setState(() {
+                      pageIndex = index;
+                    });
+                  },
+                  items: const [
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.home),
+                      label: 'Home',
                     ),
-                  ),
-                ),
-                const SizedBox(height: 60),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  height: 0.2,
-                  color: Colors.black,
-                ),
-                const SizedBox(height: 32),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 20, right: 16),
-                        constraints: const BoxConstraints(maxWidth: 200),
-                        child: const Text(
-                          "Now it is your time to create your own gallery. Here we have some suggestions based on your favorites types of art",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w200,
-                            height: 1.4,
-                          ),
-                          textAlign: TextAlign.right,
-                        ),
-                      ),
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.import_contacts),
+                      label: 'Pieces',
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(right: 20),
-                      width: 100,
-                      child: Image.asset('lib/images/foryou.png'),
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.person_outline),
+                      label: 'Profile',
                     ),
                   ],
                 ),
-                const SizedBox(height: 24),
-                InkWell(
-                  onTap: _navigateToDetailPage,
-                  child: Container(
-                    child: Image.asset(
-                      'lib/images/foryou-1.png',
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                      onTap: _navigateToDetailPage,
-                      child: Container(
-                        width: (MediaQuery.of(context).size.width - 4) / 2,
-                        height: 140,
-                        child: Image.asset(
-                          'lib/images/foryou-2.png',
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: _navigateToDetailPage,
-                      child: Container(
-                        width: (MediaQuery.of(context).size.width - 4) / 2,
-                        height: 140,
-                        child: Image.asset(
-                          'lib/images/foryou-3.png',
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                Container(
-                  margin: const EdgeInsets.only(left: 8, right: 8),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // levar para a página do perfil
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.black,
-                      onPrimary: Colors.white,
-                      minimumSize: const Size(double.infinity, 48),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                    ),
-                    child: const Text(
-                      "SEE MORE",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 100),
-              ],
+              ),
             ),
-          ),
-          CustomBottomNavigationBar(
-            currentIndex: pageIndex,
-            onTap: (int index) {
-              setState(() {
-                pageIndex = index;
-              });
-            },
-          ),
+          )
         ],
-      ),
+      )
     );
   }
 }
