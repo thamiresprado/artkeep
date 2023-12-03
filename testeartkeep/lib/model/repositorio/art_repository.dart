@@ -35,7 +35,7 @@ class ArtRepository implements IArtRepository {
 
       // Selecionar os primeiros 100 objectIDs embaralhados
       final List<int> selectedObjectIDs =
-      allObjectIDs.take(50).toList();
+      allObjectIDs.take(5).toList();
 
       for (int objectID in selectedObjectIDs) {
         final detailsResponse = await client.get(

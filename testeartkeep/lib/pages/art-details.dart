@@ -9,7 +9,6 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  bool _isBottomSheetVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +44,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            _showBottomSheet();
+                            // TODO: SALVAR A CURTIDA
                           },
                           child: const Icon(
                             Icons.star_border,
@@ -202,38 +201,6 @@ class _DetailsPageState extends State<DetailsPage> {
                     ),
 
                     SizedBox(height: 32),
-
-                    // Seção de comentários
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets
-                          .fromLTRB(16.0, 24,
-                          16.0, 16.0),
-                      color: const Color
-                        (0xFFF5F5F5),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'comments',
-                            style: TextStyle(
-                              fontFamily: 'AlfaSlabOne',
-                              fontSize: 24.0,
-                            ),
-                          ),
-                          CommentWidget(
-                            userName: 'John Doe',
-                            time: '2h ago',
-                            comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                          ),
-                          CommentWidget(
-                            userName: 'Jane Smith',
-                            time: '1h ago',
-                            comment: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                          ),
-                        ],
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -262,75 +229,6 @@ class _DetailsPageState extends State<DetailsPage> {
             style: const TextStyle(
               fontSize: 12.0,
               fontWeight: FontWeight.w100,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showBottomSheet() {
-    // ... (código anterior)
-  }
-}
-
-class CommentWidget extends StatelessWidget {
-  final String userName;
-  final String time;
-  final String comment;
-
-  CommentWidget({
-    required this.userName,
-    required this.time,
-    required this.comment,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 16.0),
-      padding: const EdgeInsets.symmetric
-        (horizontal: 16.0, vertical: 8.0),
-      color: Colors.white,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              // Imagem do usuário
-              CircleAvatar(
-                radius: 16.0,
-                // Substitua a linha abaixo pela lógica real de obtenção da imagem do usuário
-                backgroundImage: AssetImage('lib/images/avatar.png'),
-              ),
-              SizedBox(width: 4.0),
-              // Nome do usuário
-              Text(
-                userName,
-                style: TextStyle(
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              Spacer(), // Espaço flexível para empurrar a hora para a direita
-              // Hora do comentário
-              Text(
-                time,
-                style: TextStyle(
-                  fontSize: 12.0,
-                  color: Colors.grey,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 12.0),
-          // Comentário
-          Text(
-            comment,
-            style: TextStyle(
-              fontSize: 12.0,
-              fontWeight: FontWeight.w200,
-              fontFamily: 'Roboto',
             ),
           ),
         ],

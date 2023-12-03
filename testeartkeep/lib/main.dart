@@ -24,22 +24,6 @@ void main() async {
   ], child: const MyApp()));
 }
 
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: "Bottom Navigation Bar",
-//       theme: ThemeData(
-//         useMaterial3: true,
-//       ),
-//       home: const MainHomePage(),
-//       debugShowCheckedModeBanner: false,
-//     );
-//   }
-// }
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
