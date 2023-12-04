@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:testeartkeep/pages/pieces.dart';
 import 'package:testeartkeep/pages/search.dart';
-import 'art-details.dart';
-import 'categories.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -12,15 +9,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void _navigateToDetailPage() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) {
-          return DetailsPage(navigator: Navigator.of(context));
-        },
-      ),
-    );
-  }
+  //TODO: quando tiver com banco, conectar imagens curtidas na api nesse metodo aqui
+  // void _navigateToDetailPage() {
+  //   Navigator.of(context).push(
+  //     MaterialPageRoute(
+  //       builder: (context) {
+  //         return DetailsPage(navigator: Navigator.of(context));
+  //       },
+  //     ),
+  //   );
+  // }
 
 
   @override
@@ -112,7 +110,7 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 24),
             InkWell(
-              onTap: _navigateToDetailPage,
+              // onTap: _navigateToDetailPage,
               child: Container(
                 child: Image.asset(
                   'lib/images/foryou-1.png',
@@ -126,7 +124,7 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
-                  onTap: _navigateToDetailPage,
+                  // onTap: _navigateToDetailPage,
                   child: Container(
                     width: (MediaQuery.of(context).size.width - 4) / 2,
                     height: 140,
@@ -138,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 InkWell(
-                  onTap: _navigateToDetailPage,
+                  // onTap: _navigateToDetailPage,
                   child: Container(
                     width: (MediaQuery.of(context).size.width - 4) / 2,
                     height: 140,

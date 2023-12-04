@@ -10,7 +10,7 @@ class ArtModel {
   final String title;
   final String artistDisplayName;
   final String objectDate;
-  final String geographyType;
+  final String city;
 
   ArtModel({
     required this.isHighlight,
@@ -21,7 +21,7 @@ class ArtModel {
     required this.title,
     required this.artistDisplayName,
     required this.objectDate,
-    required this.geographyType,
+    required this.city,
   });
 
   //construtor para sair do formato json
@@ -38,7 +38,7 @@ class ArtModel {
       title: map['title'],
       artistDisplayName: map['artistDisplayName'],
       objectDate: map['objectDate'],
-      geographyType: map['geographyType'],
+      city: map['city'],
     );
   }
 }

@@ -3,7 +3,7 @@ import 'package:testeartkeep/pages/stores/art_store.dart';
 import '../model/repositorio/art_repository.dart';
 import 'package:testeartkeep/model/http/http_client.dart';
 
-import 'detalhesteste.dart';
+import 'art_details.dart';
 
 class PiecesPage extends StatefulWidget {
   const PiecesPage({Key? key}) : super(key: key);
