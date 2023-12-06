@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:testeartkeep/pages/stores/art_store.dart';
+import '../bloc/like_bloc.dart';
 import '../model/repositorio/art_repository.dart';
 import 'package:testeartkeep/model/http/http_client.dart';
-
-import 'art_details.dart';
+import '../pages/art_details.dart';
 
 class PiecesPage extends StatefulWidget {
   const PiecesPage({Key? key}) : super(key: key);
@@ -106,9 +107,16 @@ class _PiecesPageState extends State<PiecesPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DetalhesPage(artDetails: item),
+                              builder: (context) => DetalhesPage(
+                                artDetails: item,
+                                onLike: (likedArt) {
+                                  // Lógica para curtir a obra no Firestore usando likedArt
+                                  BlocProvider.of<LikeBloc>(context).add(CreateLike(art: likedArt));
+                                },
+                              ),
                             ),
                           );
+
                         },
                         child: Column(
                           children: [

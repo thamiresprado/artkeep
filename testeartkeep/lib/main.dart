@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:testeartkeep/pages/welcome.dart';
 import 'bloc/auth_bloc.dart';
+import 'bloc/like_bloc.dart';
 import 'mainhomepage.dart';
 import 'pages/wrapper.dart';
 
@@ -20,6 +21,9 @@ void main() async {
   runApp(MultiBlocProvider(providers: [
     BlocProvider<AuthBloc>(
       create: (context) => AuthBloc(),
+    ),
+    BlocProvider<LikeBloc>(
+      create: (context) => LikeBloc(),
     ),
   ], child: const MyApp()));
 }
