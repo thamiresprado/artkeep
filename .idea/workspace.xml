@@ -5,19 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4fdadc0c-3763-49f9-81c6-8708da29018a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/testeartkeep/lib/bloc/auth_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/lib/bloc/auth_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testeartkeep/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testeartkeep/lib/pages/art_details.dart" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/lib/pages/art_details.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testeartkeep/lib/pages/pieces.dart" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/lib/pages/pieces.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testeartkeep/linux/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/linux/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testeartkeep/linux/flutter/generated_plugin_registrant.h" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/linux/flutter/generated_plugin_registrant.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testeartkeep/linux/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/linux/flutter/generated_plugins.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testeartkeep/lib/bloc/like_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/lib/bloc/like_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testeartkeep/lib/pages/profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/lib/pages/profile.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testeartkeep/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testeartkeep/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testeartkeep/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testeartkeep/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testeartkeep/windows/flutter/generated_plugin_registrant.h" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/windows/flutter/generated_plugin_registrant.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testeartkeep/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/windows/flutter/generated_plugins.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testeartkeep/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/web/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

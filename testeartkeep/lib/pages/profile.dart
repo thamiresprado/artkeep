@@ -1,7 +1,14 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:testeartkeep/pages/select_avatar.dart';
 import '../bloc/auth_bloc.dart';
+import '../bloc/like_bloc.dart';
+import '../model/art_model.dart';
+import 'package:http/http.dart' as http;
+
+
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -11,6 +18,13 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  @override
+  void initState() {
+    super.initState();
+    // Disparar o evento RetrieveLikes ao iniciar a página para obter as obras curtidas
+    BlocProvider.of<LikeBloc>(context).add(RetrieveLikes());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +42,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   IconButton(
                     icon: const Icon(Icons.logout),
                     onPressed: () {
-                      Navigator.popUntil(context, ModalRoute.withName('/welcome'));
+                      Navigator.popUntil(
+                          context, ModalRoute.withName('/welcome'));
                       BlocProvider.of<AuthBloc>(context).add(Logout());
                     },
                     iconSize: 25,
@@ -63,12 +78,12 @@ class _ProfilePageState extends State<ProfilePage> {
                               borderRadius: BorderRadius.circular(4.0),
                             ),
                             child: InkWell(
-                              onTap: () {
-                                // Adicione aqui a navegação para a próxima página ao clicar na imagem do avatar
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => SelectAvatarPage()),
-                                );                              },
+                              // onTap: () {
+                              //   // Adicione aqui a navegação para a próxima página ao clicar na imagem do avatar
+                              //   Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(builder: (context) => SelectAvatarPage()),
+                              //   );},
                               child: Image.asset(
                                 'lib/images/avatar3.png',
                                 fit: BoxFit.cover,
@@ -140,55 +155,18 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     SizedBox(height: 32),
-                    //Carrossel Arts
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          Container(
-                            width: 200,
-                            height: 200,
-                            margin: const EdgeInsets.only(left: 20),
-                            child: Image.asset(
-                              'lib/images/art1.png',
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                            ),
-                          ),
-                          Container(
-                            width: 200,
-                            height: 200,
-                            margin: const EdgeInsets.only(left: 8),
-                            child: Image.asset(
-                              'lib/images/art2.png',
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                            ),
-                          ),
-                          Container(
-                            width: 200,
-                            height: 200,
-                            margin: const EdgeInsets.only(left: 8),
-                            child: Image.asset(
-                              'lib/images/art3.png',
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                            ),
-                          ),
-                          Container(
-                            width: 200,
-                            height: 200,
-                            margin: const EdgeInsets.only(left: 8, right: 16),
-                            child: Image.asset(
-                              'lib/images/art4.png',
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                            ),
-                          ),
-                        ],
-                      ),
+                    BlocBuilder<LikeBloc, LikeState>(
+                      builder: (context, state) {
+                        if (state is ObtainedArts) {
+                          return _buildLikedArtworksList(state.arts);
+                        } else if (state is ErrorLikes) {
+                          return Text(state.message);
+                        } else {
+                          return CircularProgressIndicator();
+                        }
+                      },
                     ),
-                    SizedBox(height: 50),
+                    SizedBox(height: 80),
                   ],
                 ),
               ),
@@ -198,6 +176,75 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
+
+  Widget _buildLikedArtworksList(List<ArtModel> likedArts) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          child: Text(
+            'Obras Curtidas',
+            style: TextStyle(
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        ListView.builder(
+          shrinkWrap: true,
+          itemCount: likedArts.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text(likedArts[index].title),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(likedArts[index].artistDisplayName),
+                  // _buildImageFromUrl(likedArts[index].primaryImage),
+                ],
+              ),
+              // Adicione qualquer informação adicional que deseja exibir
+              // por exemplo, data, etc.
+            );
+          },
+        ),
+      ],
+    );
+  }
+  //
+  // Widget _buildImageFromUrl(String imageUrl) {
+  //   try {
+  //     return FutureBuilder(
+  //       future: _fetchImageFromNetwork(imageUrl),
+  //       builder: (context, snapshot) {
+  //         if (snapshot.connectionState == ConnectionState.done) {
+  //           if (snapshot.hasError) {
+  //             print('Erro ao carregar a imagem: ${snapshot.error}');
+  //             return Container(); // Ou um widget de imagem padrão para indicar erro
+  //           } else {
+  //             return Image.memory(snapshot.data as Uint8List, width: 100, height: 100);
+  //           }
+  //         } else {
+  //           return CircularProgressIndicator(); // Pode exibir um indicador de carregamento enquanto a imagem está sendo buscada
+  //         }
+  //       },
+  //     );
+  //   } catch (e) {
+  //     print('Erro ao carregar a imagem: $e');
+  //     return Container(); // Ou um widget de imagem padrão para indicar erro
+  //   }
+  // }
+  //
+  // Future<Uint8List> _fetchImageFromNetwork(String imageUrl) async {
+  //   final response = await http.get(Uri.parse(imageUrl));
+  //
+  //   if (response.statusCode == 200) {
+  //     return Uint8List.fromList(response.bodyBytes);
+  //   } else {
+  //     throw Exception('Falha ao carregar a imagem');
+  //   }
+  // }
 
   Widget _buildInfoRow(String title, String description) {
     return Container(
@@ -221,38 +268,6 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ],
       ),
-    );
-  }
-  Future<void> _showConfirmationDialog(BuildContext context) async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(''),
-          content: const SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text('Tem certeza que deseja sair?'),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('NÃO'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: const Text('SIM'),
-              onPressed: () {
-                BlocProvider.of<AuthBloc>(context).add(Logout());
-              },
-            ),
-          ],
-        );
-      },
     );
   }
 }
