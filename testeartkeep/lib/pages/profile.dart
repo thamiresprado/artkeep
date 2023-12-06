@@ -177,6 +177,111 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
+  // Widget _buildLikedArtworksList(List<ArtModel> likedArts) {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       Padding(
+  //         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+  //         child: Text(
+  //           'Obras Curtidas',
+  //           style: TextStyle(
+  //             fontSize: 24.0,
+  //             fontWeight: FontWeight.bold,
+  //           ),
+  //         ),
+  //       ),
+  //       ListView.builder(
+  //         shrinkWrap: true,
+  //         itemCount: likedArts.length,
+  //         itemBuilder: (context, index) {
+  //           return ListTile(
+  //             title: Text(likedArts[index].title),
+  //             subtitle: Column(
+  //               crossAxisAlignment: CrossAxisAlignment.start,
+  //               children: [
+  //                 Text(likedArts[index].artistDisplayName),
+  //                 // _buildImageFromUrl(likedArts[index].primaryImage),
+  //               ],
+  //             ),
+  //             // Adicione qualquer informação adicional que deseja exibir
+  //             // por exemplo, data, etc.
+  //           );
+  //         },
+  //       ),
+  //     ],
+  //   );
+  // }
+
+  //
+  // Widget _buildLikedArtworksList(List<ArtModel> likedArts) {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       Padding(
+  //         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+  //         child: Text(
+  //           'Obras Curtidas',
+  //           style: TextStyle(
+  //             fontSize: 24.0,
+  //             fontWeight: FontWeight.bold,
+  //           ),
+  //         ),
+  //       ),
+  //       ListView.builder(
+  //         shrinkWrap: true,
+  //         itemCount: likedArts.length,
+  //         itemBuilder: (context, index) {
+  //           return ListTile(
+  //             title: Text(likedArts[index].title),
+  //             subtitle: Column(
+  //               crossAxisAlignment: CrossAxisAlignment.start,
+  //               children: [
+  //                 Text(likedArts[index].artistDisplayName),
+  //               ],
+  //             ),
+  //             onTap: () {
+  //               // Mostrar um AlertDialog para confirmar a exclusão
+  //               showDialog(
+  //                 context: context,
+  //                 builder: (BuildContext context) {
+  //                   return AlertDialog(
+  //                     title: Text('Excluir obra dos favoritos?'),
+  //                     content: Text(
+  //                       'Deseja realmente excluir esta obra dos favoritos?',
+  //                     ),
+  //                     actions: <Widget>[
+  //                       TextButton(
+  //                         onPressed: () {
+  //                           // Fechar o AlertDialog
+  //                           Navigator.of(context).pop();
+  //                         },
+  //                         child: Text('Não'),
+  //                       ),
+  //                       TextButton(
+  //                         onPressed: () {
+  //                           // Remover localmente da lista
+  //                           setState(() {
+  //                             likedArts.removeAt(index);
+  //                           });
+  //
+  //                           // Fechar o AlertDialog
+  //                           Navigator.of(context).pop();
+  //                         },
+  //                         child: Text('Sim'),
+  //                       ),
+  //                     ],
+  //                   );
+  //                 },
+  //               );
+  //             },
+  //           );
+  //         },
+  //       ),
+  //     ],
+  //   );
+  // }
+
   Widget _buildLikedArtworksList(List<ArtModel> likedArts) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -201,17 +306,56 @@ class _ProfilePageState extends State<ProfilePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(likedArts[index].artistDisplayName),
-                  // _buildImageFromUrl(likedArts[index].primaryImage),
                 ],
               ),
-              // Adicione qualquer informação adicional que deseja exibir
-              // por exemplo, data, etc.
+              onTap: () {
+                // Mostrar um AlertDialog para confirmar a exclusão
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Excluir obra dos favoritos?'),
+                      content: Text(
+                        'Deseja realmente excluir esta obra dos favoritos?',
+                      ),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            // Fechar o AlertDialog
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('Não'),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            // Remover do Firestore
+                            BlocProvider.of<LikeBloc>(context).add(DeleteLike(artTitle: likedArts[index].title));
+
+                            // Remover localmente da lista
+                            setState(() {
+                              likedArts.removeAt(index);
+                            });
+
+                            // Fechar o AlertDialog
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('Sim'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
             );
           },
         ),
       ],
     );
   }
+
+
+
+
   //
   // Widget _buildImageFromUrl(String imageUrl) {
   //   try {

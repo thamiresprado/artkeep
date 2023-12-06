@@ -50,6 +50,7 @@ class LikeBloc
             Map<String, dynamic> data = doc.data()
                 as Map<String, dynamic>;
             return ArtModel(
+              id: '',
               primaryImage: data['primaryImage'],
               title: data['title'],
               artistDisplayName:
@@ -74,20 +75,29 @@ class LikeBloc
     );
 
     on<DeleteLike>(
-      (event, emit) {
+          (event, emit) {
         try {
           firestore
+              .collection('users')
               .doc(AuthBloc.uid)
               .collection('likes')
-              .doc(event.artId)
-              .delete();
+              .where('title', isEqualTo: event.artTitle)  // Use o título para encontrar o documento
+              .get()
+              .then((querySnapshot) {
+            querySnapshot.docs.forEach((doc) {
+              doc.reference.delete();
+            });
+          });
         } catch (e) {
+          print('Erro ao excluir do Firestore: $e');
           emit(ErrorLikes(
               message:
-                  'Não foi possível remover a postagem, tente novamente.'));
+              'Não foi possível remover a postagem, tente novamente.'));
         }
       },
     );
+
+
   }
 }
 
@@ -102,11 +112,10 @@ class CreateLike extends LikeEvent {
 class RetrieveLikes extends LikeEvent {}
 
 class DeleteLike extends LikeEvent {
-  String artId;
+  String artTitle;
 
-  DeleteLike({required this.artId});
+  DeleteLike({required this.artTitle});
 }
-
 abstract class LikeState {}
 
 class WithoutLikes extends LikeState {}

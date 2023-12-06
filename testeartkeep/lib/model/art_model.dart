@@ -2,6 +2,7 @@
 // criar o produto
 
 class ArtModel {
+  String id;
   final bool isHighlight;
   final String primaryImage;
   final List<String> additionalImages;
@@ -13,6 +14,7 @@ class ArtModel {
   final String city;
 
   ArtModel({
+    required this.id,
     required this.isHighlight,
     required this.primaryImage,
     required this.additionalImages,
@@ -29,6 +31,7 @@ class ArtModel {
   factory ArtModel.fromMap(
       Map<String, dynamic> map) {
     return ArtModel(
+      id: '',
       isHighlight: map['isHighlight'],
       primaryImage: map['primaryImage'],
       additionalImages: List<String>.from(
