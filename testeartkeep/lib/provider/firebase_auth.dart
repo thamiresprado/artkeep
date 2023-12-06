@@ -12,7 +12,7 @@ class FirebaseAuthenticationService {
   }
 
   UserModel? _userFromFirebaseUser(User? user) {
-    return user != null ? UserModel(user.uid) : null;
+    return user != null ? UserModel(user.uid, user.uid, user.uid, user.uid) : null;
   }
 
   Future<UserModel?> signInAnonimo() async {

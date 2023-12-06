@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:testeartkeep/bloc/user_bloc.dart';
 import 'package:testeartkeep/pages/welcome.dart';
 import 'bloc/auth_bloc.dart';
 import 'bloc/like_bloc.dart';
@@ -25,6 +26,9 @@ void main() async {
     BlocProvider<LikeBloc>(
       create: (context) => LikeBloc(),
     ),
+    // BlocProvider<UserBloc>(
+    //   create: (context) => UserBloc(),
+    // ),
   ], child: const MyApp()));
 }
 

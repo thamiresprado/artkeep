@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:testeartkeep/pages/select_avatar.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/like_bloc.dart';
 import '../model/art_model.dart';
@@ -78,12 +79,12 @@ class _ProfilePageState extends State<ProfilePage> {
                               borderRadius: BorderRadius.circular(4.0),
                             ),
                             child: InkWell(
-                              // onTap: () {
-                              //   // Adicione aqui a navegação para a próxima página ao clicar na imagem do avatar
-                              //   Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(builder: (context) => SelectAvatarPage()),
-                              //   );},
+                              onTap: () {
+                                // Adicione aqui a navegação para a próxima página ao clicar na imagem do avatar
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => SelectAvatarPage()),
+                                );},
                               child: Image.asset(
                                 'lib/images/avatar3.png',
                                 fit: BoxFit.cover,
@@ -144,6 +145,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                //_buildInfoRow('NAME', BlocProvider.of<AuthBloc>(context).add(RetrieveUserInfoEvent())),
                                 _buildInfoRow('NAME', 'John Brown'),
                                 _buildInfoRow('BIRTHDAY', '24/05/1996'),
                                 _buildInfoRow('E-MAIL', 'johnbrown@gmail.com'),
@@ -286,14 +288,18 @@ class _ProfilePageState extends State<ProfilePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
+        const Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: Text(
-            'Obras Curtidas',
+            //'Obras Curtidas',
+            'Liked arts',
             style: TextStyle(
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
+              fontFamily: 'AlfaSlabOne',
+              fontSize: 20.0,
+              fontWeight: FontWeight.w100,
+              height: 1.0,
             ),
+            textAlign: TextAlign.right,
           ),
         ),
         ListView.builder(
@@ -314,32 +320,37 @@ class _ProfilePageState extends State<ProfilePage> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: Text('Excluir obra dos favoritos?'),
-                      content: Text(
-                        'Deseja realmente excluir esta obra dos favoritos?',
+                      title: Text('Actions in art'),
+                      content: const Text(
+                        'Do you want to delete this art from your favorites?',
                       ),
                       actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            // Fechar o AlertDialog, Mudar para abrir os detalhes da obra
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('Ver detalhes'),
+                        ),
                         TextButton(
                           onPressed: () {
                             // Fechar o AlertDialog
                             Navigator.of(context).pop();
                           },
-                          child: Text('Não'),
+                          child: Text('No'),
                         ),
                         TextButton(
                           onPressed: () async {
                             // Remover do Firestore
                             BlocProvider.of<LikeBloc>(context).add(DeleteLike(artTitle: likedArts[index].title));
-
                             // Remover localmente da lista
                             setState(() {
                               likedArts.removeAt(index);
                             });
-
                             // Fechar o AlertDialog
                             Navigator.of(context).pop();
                           },
-                          child: Text('Sim'),
+                          child: Text('Yes'),
                         ),
                       ],
                     );

@@ -14,6 +14,8 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
   GlobalKey<FormState> formkey = GlobalKey();
   String username = "";
   String password = "";
+  String firstname = "";
+
   TabController? _tabController;
   bool _obscureText = true;
   final TextEditingController _passwordController = TextEditingController();

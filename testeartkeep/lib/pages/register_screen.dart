@@ -11,6 +11,7 @@ import 'package:testeartkeep/pages/login_screen.dart';
 //     // show DatePicker, DatePickerTheme, LocaleType;
 
 import '../bloc/auth_bloc.dart';
+import '../model/user_model.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -46,6 +47,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
     GlobalKey<FormState> formKey = GlobalKey();
     String username = "";
     String password = "";
+    String firstname = "";
+    String lastname = "";
+    String birthdate = "";
 
     return Scaffold(
       body: Stack(
@@ -111,9 +115,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     Container(
                                       // color: Colors.white,
                                       child: TextFormField(
-                                        // onSaved: (String? inValue) {
-                                        // },
                                         style: TextStyle(color: Colors.white),
+                                        onSaved: (String? inValue) {
+                                          firstname = inValue!;
+                                        },
                                         decoration: InputDecoration(
                                           contentPadding:
                                               const EdgeInsets.symmetric(
@@ -158,10 +163,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       ),
                                     ),
                                     TextFormField(
-                                      // onSaved: (String? inValue) {
-                                      // },
                                       style:
                                           const TextStyle(color: Colors.white),
+                                      onSaved: (String? inValue) {
+                                        lastname = inValue!;
+                                      },
                                       decoration: InputDecoration(
                                         contentPadding:
                                             const EdgeInsets.symmetric(
@@ -211,6 +217,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     TextFormField(
                                       inputFormatters: [maskFormatter],
                                       style: TextStyle(color: Colors.white),
+                                      onSaved: (String? inValue) {
+                                        birthdate = inValue!;
+                                      },
                                       decoration: InputDecoration(
                                         // suffixIcon: IconButton(
                                         //   icon: Icon(Icons.calendar_today),
@@ -498,7 +507,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 BlocProvider.of<AuthBloc>(context).add(
                                     RegisterUser(
                                         username: username,
-                                        password: password));
+                                        password: password,
+                                        firstname: firstname,
+                                        lastname : lastname,
+                                        birthdate: birthdate,
+                                    ));
                               }
                             },
                             style: ElevatedButton.styleFrom(
