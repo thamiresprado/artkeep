@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../provider/firebase_auth.dart';
 import '../model/user_model.dart';
@@ -26,7 +27,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         print("emitindo");
         uid = event.userModel!.uid;
         emit(Authenticated(userModel: event.userModel!));
-        add(RetrieveUserInfoEvent());
+        add(RetrieveUsers());
       }
     });
 
@@ -46,6 +47,46 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     });
 
+    on<RetrieveUsers>(
+    (event, emit) async {
+        try {
+          // Obter os documentos da coleção de usuários
+          QuerySnapshot querySnapshot = await firestore.collection('users').get();
+
+          // Converter os documentos em instâncias de UserModel
+          List<UserModel> users = querySnapshot.docs.map((doc) {
+            Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+            return UserModel(
+              uid: doc.id, // Use o ID do documento como UID
+              firstname: data['firstname'],
+              lastname: data['lastname'],
+              birthdate: data['birthdate'],
+              username: data['username'],
+            );
+          }).toList();
+
+          // Emitir o estado com os usuários obtidos
+          emit(ObtainedUsers(users: users));
+        } catch (e) {
+          emit(ErrorUser(
+              message: 'Não foi possível obter usuários, tente novamente.'));
+        }
+      },
+    );
+
+    // on<RetrieveUsers>((event, emit) async {
+    //   try {
+    //     DocumentSnapshot userSnapshot = await firestore.collection('users').doc(uid).get();
+    //     Map<String, dynamic> userData = userSnapshot.data() as Map<String, dynamic>;
+    //
+    //     UserModel updatedUser = UserModel.fromMap(uid, userData);
+    //
+    //     emit(Authenticated(userModel: updatedUser));
+    //   } catch (e) {
+    //     // Trate erros de recuperação de dados, se necessário
+    //   }
+    // });
+
 
     on<LoginUser>((event, emit) async {
       try {
@@ -57,27 +98,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             "Impossível Logar com ${event.username}: ${e.toString()}"));
       }
     });
-
-    on<RetrieveUserInfoEvent>((event, emit) async {
-      try {
-        DocumentSnapshot userDoc =
-        await firestore.collection('users').doc(uid).get();
-        if (userDoc.exists) {
-          UserModel userInfo = UserModel(
-            uid,
-            userDoc['firstname'],
-            userDoc['lastname'],
-            userDoc['birthdate'],
-          );
-          emit(UserInfoRetrieved(userModel: userInfo));
-        }
-      } catch (e) {
-        // Handle error
-        print("Error retrieving user information: $e");
-      }
-    });
-
-
 
     on<LoginAnonymousUser>((event, emit) async {
       try {
@@ -130,13 +150,15 @@ class AuthServerEvent extends AuthEvent {
   AuthServerEvent(this.userModel);
 }
 
-class UserInfoRetrieved extends AuthState {
-  UserModel userModel;
+class RetrieveUsers extends AuthEvent {}
 
-  UserInfoRetrieved({required this.userModel});
-}
-
-class RetrieveUserInfoEvent extends AuthEvent {}
+// class UserInfoRetrieved extends AuthState {
+//   UserModel userModel;
+//
+//   UserInfoRetrieved({required this.userModel});
+// }
+//
+// class RetrieveUserInfoEvent extends AuthEvent {}
 
 
 /*
@@ -160,3 +182,16 @@ class AuthError extends AuthState {
 }
 
 class RetrieveUserInfo extends AuthEvent {}
+
+
+class ObtainedUsers extends AuthState {
+  List<UserModel> users;
+
+  ObtainedUsers({required this.users});
+}
+
+class ErrorUser extends AuthState {
+  final String message;
+
+  ErrorUser({required this.message});
+}

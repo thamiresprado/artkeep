@@ -5,6 +5,7 @@ import 'package:testeartkeep/pages/select_avatar.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/like_bloc.dart';
 import '../model/art_model.dart';
+import '../model/user_model.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -18,6 +19,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     super.initState();
     BlocProvider.of<LikeBloc>(context).add(RetrieveLikes());
+    //BlocProvider.of<LikeBloc>(context).add(RetrieveUsers());
   }
 
   @override
@@ -91,7 +93,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  'John Brown',
+                                 'John Brown',
                                   style: TextStyle(
                                     fontSize: 26.0,
                                     fontWeight: FontWeight.w900,
@@ -135,7 +137,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                //_buildInfoRow('NAME', BlocProvider.of<AuthBloc>(context).add(RetrieveUserInfoEvent())),
+                                // _buildInfoRow('NAME', userModel.firstname),
+                                // _buildInfoRow('BIRTHDAY', userModel.birthdate),
+                                // _buildInfoRow('USERNAME', userModel.username),
                                 _buildInfoRow('NAME', 'John Brown'),
                                 _buildInfoRow('BIRTHDAY', '24/05/1996'),
                                 _buildInfoRow('E-MAIL', 'johnbrown@gmail.com'),

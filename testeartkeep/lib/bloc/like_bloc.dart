@@ -8,27 +8,49 @@ class LikeBloc
   final FirebaseFirestore firestore =
       FirebaseFirestore.instance;
 
+  // Função para verificar se a obra já foi favoritada
+  Future<bool> isAlreadyLiked(String artTitle) async {
+    QuerySnapshot querySnapshot = await firestore
+        .collection('users')
+        .doc(AuthBloc.uid)
+        .collection('likes')
+        .where('title', isEqualTo: artTitle)
+        .get();
+
+    return querySnapshot.docs.isNotEmpty;
+  }
+
   LikeBloc() : super(WithoutLikes()) {
     on<CreateLike>(
-      (event, emit) {
+          (event, emit) async {
         try {
-          firestore
-              .collection('users')
-              .doc(AuthBloc.uid)
-              .collection('likes')
-              .add(
-            {
-              'primaryImage':
-                  event.art.primaryImage,
-              'title': event.art.title,
-              'artistDisplayName':
-                  event.art.artistDisplayName,
-            },
-          );
+          // Verificar se a obra já foi favoritada
+          bool alreadyLiked = await isAlreadyLiked(event.art.title);
+
+          if (alreadyLiked) {
+            // Emitir um estado indicando que a obra já foi favoritada
+            emit(AlreadyLiked());
+          } else {
+            // Adicionar a obra à coleção de favoritos
+            await firestore
+                .collection('users')
+                .doc(AuthBloc.uid)
+                .collection('likes')
+                .add(
+              {
+                'primaryImage': event.art.primaryImage,
+                'title': event.art.title,
+                'artistDisplayName': event.art.artistDisplayName,
+              },
+            );
+
+            // Emitir um estado indicando que a obra foi favoritada com sucesso
+            emit(LikeSuccess());
+          }
         } catch (e) {
           emit(ErrorLikes(
               message:
-                  'Não foi possível cadastrar a postagem, tente novamente.'));
+              'Não foi possível cadastrar a postagem, tente novamente.'));
         }
       },
     );
@@ -107,6 +129,22 @@ class CreateLike extends LikeEvent {
   ArtModel art;
 
   CreateLike({required this.art});
+}
+
+class AlreadyLiked extends LikeState {}
+
+class LikeSuccess extends LikeState {}
+
+class CheckIfArtIsLiked extends LikeEvent {
+  ArtModel art;
+
+  CheckIfArtIsLiked({required this.art});
+}
+
+class ArtIsLiked extends LikeState {
+  bool isLiked;
+
+  ArtIsLiked({required this.isLiked});
 }
 
 class RetrieveLikes extends LikeEvent {}
