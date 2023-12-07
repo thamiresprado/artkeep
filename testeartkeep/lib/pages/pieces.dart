@@ -46,7 +46,8 @@ class _PiecesPageState extends State<PiecesPage> {
           const Padding(
             padding: EdgeInsets.all(16),
             child: Text(
-              'The MET has a vast number of works. To make the process of discovering them more fun, each time you go to this page you\'ll see new results! Save your favorites and don\'t worry: just use the search to find a specific work. Enjoy!',
+              'The MET has a vast number of '
+                  'works. To make the process of discovering them more fun, each time you go to this page you\'ll see new results! Save your favorites and enjoy!',
               style: TextStyle(
                 fontWeight: FontWeight.w200,
                 fontSize: 16,

@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,9 +5,6 @@ import 'package:testeartkeep/pages/select_avatar.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/like_bloc.dart';
 import '../model/art_model.dart';
-import 'package:http/http.dart' as http;
-
-
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -22,7 +17,6 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     super.initState();
-    // Disparar o evento RetrieveLikes ao iniciar a página para obter as obras curtidas
     BlocProvider.of<LikeBloc>(context).add(RetrieveLikes());
   }
 
@@ -80,7 +74,6 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                             child: InkWell(
                               onTap: () {
-                                // Adicione aqui a navegação para a próxima página ao clicar na imagem do avatar
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(builder: (context) => SelectAvatarPage()),
@@ -120,13 +113,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     SizedBox(height: 40),
-                    // Informações sobre a obra
                     Container(
                       margin: const EdgeInsets.only(left: 16.0, right: 16.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Título "About the piece"
                           Container(
                             width: MediaQuery.of(context).size.width * 0.4,
                             margin: const EdgeInsets.only(right: 16.0),
@@ -140,7 +131,6 @@ class _ProfilePageState extends State<ProfilePage> {
                               textAlign: TextAlign.right,
                             ),
                           ),
-                          // Informações sobre a peça
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,7 +139,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                 _buildInfoRow('NAME', 'John Brown'),
                                 _buildInfoRow('BIRTHDAY', '24/05/1996'),
                                 _buildInfoRow('E-MAIL', 'johnbrown@gmail.com'),
-                                _buildInfoRow('COUNTRY', 'Brazil'),
                               ],
                             ),
                           ),
@@ -178,111 +167,6 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
-
-  // Widget _buildLikedArtworksList(List<ArtModel> likedArts) {
-  //   return Column(
-  //     crossAxisAlignment: CrossAxisAlignment.start,
-  //     children: [
-  //       Padding(
-  //         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-  //         child: Text(
-  //           'Obras Curtidas',
-  //           style: TextStyle(
-  //             fontSize: 24.0,
-  //             fontWeight: FontWeight.bold,
-  //           ),
-  //         ),
-  //       ),
-  //       ListView.builder(
-  //         shrinkWrap: true,
-  //         itemCount: likedArts.length,
-  //         itemBuilder: (context, index) {
-  //           return ListTile(
-  //             title: Text(likedArts[index].title),
-  //             subtitle: Column(
-  //               crossAxisAlignment: CrossAxisAlignment.start,
-  //               children: [
-  //                 Text(likedArts[index].artistDisplayName),
-  //                 // _buildImageFromUrl(likedArts[index].primaryImage),
-  //               ],
-  //             ),
-  //             // Adicione qualquer informação adicional que deseja exibir
-  //             // por exemplo, data, etc.
-  //           );
-  //         },
-  //       ),
-  //     ],
-  //   );
-  // }
-
-  //
-  // Widget _buildLikedArtworksList(List<ArtModel> likedArts) {
-  //   return Column(
-  //     crossAxisAlignment: CrossAxisAlignment.start,
-  //     children: [
-  //       Padding(
-  //         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-  //         child: Text(
-  //           'Obras Curtidas',
-  //           style: TextStyle(
-  //             fontSize: 24.0,
-  //             fontWeight: FontWeight.bold,
-  //           ),
-  //         ),
-  //       ),
-  //       ListView.builder(
-  //         shrinkWrap: true,
-  //         itemCount: likedArts.length,
-  //         itemBuilder: (context, index) {
-  //           return ListTile(
-  //             title: Text(likedArts[index].title),
-  //             subtitle: Column(
-  //               crossAxisAlignment: CrossAxisAlignment.start,
-  //               children: [
-  //                 Text(likedArts[index].artistDisplayName),
-  //               ],
-  //             ),
-  //             onTap: () {
-  //               // Mostrar um AlertDialog para confirmar a exclusão
-  //               showDialog(
-  //                 context: context,
-  //                 builder: (BuildContext context) {
-  //                   return AlertDialog(
-  //                     title: Text('Excluir obra dos favoritos?'),
-  //                     content: Text(
-  //                       'Deseja realmente excluir esta obra dos favoritos?',
-  //                     ),
-  //                     actions: <Widget>[
-  //                       TextButton(
-  //                         onPressed: () {
-  //                           // Fechar o AlertDialog
-  //                           Navigator.of(context).pop();
-  //                         },
-  //                         child: Text('Não'),
-  //                       ),
-  //                       TextButton(
-  //                         onPressed: () {
-  //                           // Remover localmente da lista
-  //                           setState(() {
-  //                             likedArts.removeAt(index);
-  //                           });
-  //
-  //                           // Fechar o AlertDialog
-  //                           Navigator.of(context).pop();
-  //                         },
-  //                         child: Text('Sim'),
-  //                       ),
-  //                     ],
-  //                   );
-  //                 },
-  //               );
-  //             },
-  //           );
-  //         },
-  //       ),
-  //     ],
-  //   );
-  // }
 
   Widget _buildLikedArtworksList(List<ArtModel> likedArts) {
     return Column(
@@ -315,39 +199,34 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
               onTap: () {
-                // Mostrar um AlertDialog para confirmar a exclusão
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: Text('Actions in art'),
+                      title: Text('Delete art'),
                       content: const Text(
                         'Do you want to delete this art from your favorites?',
                       ),
                       actions: <Widget>[
+                        // TextButton(
+                        //   onPressed: () {
+                        //     // Fechar o AlertDialog, Mudar para abrir os detalhes da obra
+                        //     Navigator.of(context).pop();
+                        //   },
+                        //   child: Text('Ver detalhes'),
+                        // ),
                         TextButton(
                           onPressed: () {
-                            // Fechar o AlertDialog, Mudar para abrir os detalhes da obra
-                            Navigator.of(context).pop();
-                          },
-                          child: Text('Ver detalhes'),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            // Fechar o AlertDialog
                             Navigator.of(context).pop();
                           },
                           child: Text('No'),
                         ),
                         TextButton(
                           onPressed: () async {
-                            // Remover do Firestore
                             BlocProvider.of<LikeBloc>(context).add(DeleteLike(artTitle: likedArts[index].title));
-                            // Remover localmente da lista
                             setState(() {
                               likedArts.removeAt(index);
                             });
-                            // Fechar o AlertDialog
                             Navigator.of(context).pop();
                           },
                           child: Text('Yes'),
@@ -364,42 +243,6 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-
-
-
-  //
-  // Widget _buildImageFromUrl(String imageUrl) {
-  //   try {
-  //     return FutureBuilder(
-  //       future: _fetchImageFromNetwork(imageUrl),
-  //       builder: (context, snapshot) {
-  //         if (snapshot.connectionState == ConnectionState.done) {
-  //           if (snapshot.hasError) {
-  //             print('Erro ao carregar a imagem: ${snapshot.error}');
-  //             return Container(); // Ou um widget de imagem padrão para indicar erro
-  //           } else {
-  //             return Image.memory(snapshot.data as Uint8List, width: 100, height: 100);
-  //           }
-  //         } else {
-  //           return CircularProgressIndicator(); // Pode exibir um indicador de carregamento enquanto a imagem está sendo buscada
-  //         }
-  //       },
-  //     );
-  //   } catch (e) {
-  //     print('Erro ao carregar a imagem: $e');
-  //     return Container(); // Ou um widget de imagem padrão para indicar erro
-  //   }
-  // }
-  //
-  // Future<Uint8List> _fetchImageFromNetwork(String imageUrl) async {
-  //   final response = await http.get(Uri.parse(imageUrl));
-  //
-  //   if (response.statusCode == 200) {
-  //     return Uint8List.fromList(response.bodyBytes);
-  //   } else {
-  //     throw Exception('Falha ao carregar a imagem');
-  //   }
-  // }
 
   Widget _buildInfoRow(String title, String description) {
     return Container(

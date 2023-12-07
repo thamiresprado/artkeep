@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:testeartkeep/pages/homepage.dart';
 import 'package:testeartkeep/pages/pieces.dart';
 import 'package:testeartkeep/pages/profile.dart';
-import 'package:testeartkeep/pages/search.dart';
 import 'package:testeartkeep/pages/select_avatar.dart';
 
 class MainHomePage extends StatefulWidget {

@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../provider/firebase_auth.dart';
 import '../model/user_model.dart';
-//import '../provider/firebase_firestore.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   static String uid = 'default_user';
@@ -27,39 +26,25 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         print("emitindo");
         uid = event.userModel!.uid;
         emit(Authenticated(userModel: event.userModel!));
+        add(RetrieveUserInfoEvent());
       }
     });
 
-    // on<RegisterUser>((event, emit) async {
-    //   try {
-    //     await _authenticationService.createUserWithEmailAndPassword(
-    //         event.username, event.password);
-    //
-    //   } catch (e) {
-    //     emit(AuthError(message: "Impossível Registrar: ${e.toString()}"));
-    //   }
-    // });
-
     on<RegisterUser>((event, emit) async {
       try {
-        // Registra o usuário no serviço de autenticação
         await _authenticationService.createUserWithEmailAndPassword(
             event.username, event.password);
 
-        // Cria um usuário no Firestore com os dados fornecidos
         await firestore.collection('users').doc(uid).set({
           'firstname': event.firstname,
           'lastname': event.lastname,
           'birthdate': event.birthdate,
           'username': event.username,
-          //'password': event.password,
-          // Adicione outros campos conforme necessário
         });
       } catch (e) {
         emit(AuthError(message: "Impossível Registrar: ${e.toString()}"));
       }
     });
-
 
 
     on<LoginUser>((event, emit) async {
@@ -73,40 +58,26 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     });
 
-    // on<RetrieveUserInfo>((event, emit) async {
-    //   try {
-    //     // Verifique se o usuário está autenticado
-    //     if (uid != 'default_user') {
-    //       // Consulte o Firestore para obter as informações do usuário
-    //       DocumentSnapshot userSnapshot =
-    //       await firestore.collection('users').doc(uid).get();
-    //
-    //       // Verifique se o documento existe antes de acessar os dados
-    //       if (userSnapshot.exists) {
-    //         // Crie um objeto UserModel com base nos dados recuperados
-    //         UserModel userModel = UserModel(
-    //           uid: uid,
-    //           firstname: userSnapshot['firstname'],
-    //           lastname: userSnapshot['lastname'],
-    //           birthdate: userSnapshot['birthdate'],
-    //           // Adicione outros campos conforme necessário
-    //         );
-    //
-    //         // Emita o estado UserInfoRetrieved com as informações do usuário
-    //         emit(UserInfoRetrieved(userModel: userModel));
-    //       } else {
-    //         // Se o documento não existir, emita um estado de erro ou faça o tratamento adequado
-    //         emit(AuthError(message: "Usuário não encontrado no banco de dados."));
-    //       }
-    //     } else {
-    //       // Se o usuário não estiver autenticado, emita um estado de erro ou faça o tratamento adequado
-    //       emit(AuthError(message: "Usuário não autenticado."));
-    //     }
-    //   } catch (e) {
-    //     // Se ocorrer algum erro durante a recuperação, emita um estado de erro
-    //     emit(AuthError(message: "Erro ao recuperar informações do usuário: ${e.toString()}"));
-    //   }
-    // });
+    on<RetrieveUserInfoEvent>((event, emit) async {
+      try {
+        DocumentSnapshot userDoc =
+        await firestore.collection('users').doc(uid).get();
+        if (userDoc.exists) {
+          UserModel userInfo = UserModel(
+            uid,
+            userDoc['firstname'],
+            userDoc['lastname'],
+            userDoc['birthdate'],
+          );
+          emit(UserInfoRetrieved(userModel: userInfo));
+        }
+      } catch (e) {
+        // Handle error
+        print("Error retrieving user information: $e");
+      }
+    });
+
+
 
     on<LoginAnonymousUser>((event, emit) async {
       try {

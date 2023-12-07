@@ -2,16 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:country_list_pick/country_list_pick.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-
-import 'package:intl/intl.dart';
 import 'package:testeartkeep/pages/login_screen.dart';
-
-// import 'package:date_time_picker/date_time_picker.dart';
-// // import 'package:flutter_datetime_picker/flutter_datetime_picker.dart'
-//     // show DatePicker, DatePickerTheme, LocaleType;
-
 import '../bloc/auth_bloc.dart';
-import '../model/user_model.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -21,7 +13,6 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  // String selectedCountry = '';
   bool light0 = true;
   bool light1 = true;
   bool _obscureText = true;
@@ -29,7 +20,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController _countryController = TextEditingController();
   String _selectedCountry = 'BR'; // País padrão
 
-  var maskFormatter = new MaskTextInputFormatter(
+  var maskFormatter = MaskTextInputFormatter(
       mask: '##/##/####', filter: {"#": RegExp(r'[0-9]')});
 
   final MaterialStateProperty<Icon?> thumbIcon =
@@ -125,7 +116,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                             vertical: 24,
                                           ),
                                           filled: true,
-                                          // Set to true to fill the background
                                           fillColor: Colors.white10,
                                           border: OutlineInputBorder(
                                             borderRadius:
@@ -174,7 +164,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           vertical: 24,
                                         ),
                                         filled: true,
-                                        // Set to true to fill the background
                                         fillColor: Colors.white10,
                                         border: OutlineInputBorder(
                                           borderRadius:
@@ -221,18 +210,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         birthdate = inValue!;
                                       },
                                       decoration: InputDecoration(
-                                        // suffixIcon: IconButton(
-                                        //   icon: Icon(Icons.calendar_today),
-                                        //   onPressed: () {
-                                        //     _selectDate(context);
-                                        //   },
-                                        // ),
                                         contentPadding:
                                             const EdgeInsets.symmetric(
                                           vertical: 24,
                                         ),
                                         filled: true,
-                                        // Set to true to fill the background
                                         fillColor: Colors.white10,
                                         border: OutlineInputBorder(
                                           borderRadius:
@@ -242,134 +224,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                             //color: Colors.black,
                                           ),
                                         ),
-                                      ),
-                                      // readOnly: true,
-                                      // onTap: () {
-                                      //   _selectDate(context);
-                                      // },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 6),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                padding: const EdgeInsets.only(
-                                  left: 24,
-                                  right: 24,
-                                ),
-                                child: Stack(
-                                  alignment: Alignment.topLeft,
-                                  children: [
-                                    Container(
-                                      margin: const EdgeInsets.only(
-                                          left: 8, top: 10, bottom: 16),
-                                      child: const Text(
-                                        "COUNTRY",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    ),
-                                    Container(
-                                      margin: const EdgeInsets.only(
-                                          left: 0, top: 6, bottom: 16),
-                                      //height: 50,
-                                      width: MediaQuery.of(context).size.width,
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 24.0, vertical: 12.0),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white10,
-                                        borderRadius:
-                                            BorderRadius.circular(4.0),
-                                        border: Border.all(
-                                          width: 1.0,
-                                          color: Colors.white10,
-                                        ),
-                                      ),
-                                      child: CountryListPick(
-                                        theme: CountryTheme(
-                                          isShowFlag: false,
-                                          isShowTitle: true,
-                                          isShowCode: false,
-                                          isDownIcon: false,
-                                          showEnglishName: true,
-                                        ),
-
-                                        initialSelection: _selectedCountry,
-                                        onChanged: (value) {
-                                          setState(() {
-                                            _selectedCountry = value as String; // Atualiza o país selecionado
-                                            _countryController.text = value as String; // Atualiza o texto do controlador
-                                          });
-                                          //print(_selectedCountry);
-                                          //_selectedCountry = value // Atualiza o país selecionado
-                                          //   _countryController.text = value; // Atualiza o texto do controlador
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 6),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                padding: const EdgeInsets.only(
-                                  left: 24,
-                                  right: 24,
-                                ),
-                                child: Stack(
-                                  alignment: Alignment.centerLeft,
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 24),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Flexible(
-                                            child: Container(
-                                              margin: const EdgeInsets.only(
-                                                  top: 6, bottom: 16),
-                                              child: const Text(
-                                                "I would like to receive news by email",
-                                                style: TextStyle(
-                                                  color: Colors.grey,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            margin: const EdgeInsets.only(
-                                                left: 16, top: 0, bottom: 16),
-                                            decoration: BoxDecoration(
-                                              //color: Colors.black26,
-                                              borderRadius:
-                                                  BorderRadius.circular(4.0),
-                                            ),
-                                            child: Switch(
-                                              thumbIcon: thumbIcon,
-                                              value: light1,
-                                              activeColor: Colors.white,
-                                              inactiveTrackColor: Colors.grey,
-                                              inactiveThumbColor: Colors.black,
-                                              onChanged: (bool value) {
-                                                setState(() {
-                                                  light1 = value;
-                                                });
-                                              },
-                                            ),
-                                          ),
-                                        ],
                                       ),
                                     ),
                                   ],
@@ -411,7 +265,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           vertical: 24,
                                         ),
                                         filled: true,
-                                        // Set to true to fill the background
                                         fillColor: Colors.white10,
                                         border: OutlineInputBorder(
                                           borderRadius:
@@ -464,7 +317,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           vertical: 24,
                                         ),
                                         filled: true,
-                                        // Set to true to fill the background
                                         fillColor: Colors.white10,
                                         border: OutlineInputBorder(
                                           borderRadius:
@@ -517,11 +369,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             style: ElevatedButton.styleFrom(
                               primary: Colors.black87.withOpacity(0.7),
                               onPrimary: Colors.white,
-                              padding: const EdgeInsets.symmetric(vertical: 17),
+                              padding: const EdgeInsets.symmetric(vertical: 24),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(4.0),
-                                side: const BorderSide(
-                                    width: 1, color: Colors.white30),
+                                side: const BorderSide(width: 1, color: Colors.white30),
                               ),
                             ),
                             child: const Text("SIGN IN"),
@@ -540,13 +391,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               );
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.black87.withOpacity(0.7),
+                              primary: Colors.transparent,
                               onPrimary: Colors.white,
-                              padding: const EdgeInsets.symmetric(vertical: 17),
+                              padding: const EdgeInsets.symmetric(vertical: 24),
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4.0),
-                                side: const BorderSide(
-                                    width: 1, color: Colors.white30),
+                                borderRadius: BorderRadius.circular(0),
                               ),
                             ),
                             child: const Text("BACK"),

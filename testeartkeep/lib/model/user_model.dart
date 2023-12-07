@@ -5,13 +5,6 @@ class UserModel {
   final String birthdate;
 
   UserModel(this.uid, this.firstname, this.lastname, this.birthdate);
-  //
-  // factory UserModel.fromMap(
-  //     Map<String, dynamic> map) {
-  //   return UserModel(
-  //     uid: map['uid'],
-  //     firstname: map['firstname'],
-  //   );
-  // }
+
 
 }
