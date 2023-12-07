@@ -7,14 +7,6 @@
     <list default="true" id="4fdadc0c-3763-49f9-81c6-8708da29018a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testeartkeep/lib/bloc/auth_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/lib/bloc/auth_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testeartkeep/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testeartkeep/lib/mainhomepage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/lib/mainhomepage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testeartkeep/lib/model/user_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/lib/model/user_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testeartkeep/lib/pages/homepage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/lib/pages/homepage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testeartkeep/lib/pages/pieces.dart" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/lib/pages/pieces.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testeartkeep/lib/pages/profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/lib/pages/profile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testeartkeep/lib/pages/register_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/testeartkeep/lib/pages/register_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testeartkeep/lib/pages/search.dart" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -27,7 +27,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         print("emitindo");
         uid = event.userModel!.uid;
         emit(Authenticated(userModel: event.userModel!));
-        add(RetrieveUsers());
       }
     });
 
@@ -47,51 +46,41 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     });
 
-    on<RetrieveUsers>(
-    (event, emit) async {
-        try {
-          // Obter os documentos da coleção de usuários
-          QuerySnapshot querySnapshot = await firestore.collection('users').get();
+    on<RetrieveUserInfo>((event, emit) async {
+      try {
+        // Obter os documentos da coleção de usuários
+        DocumentSnapshot documentSnapshot =
+        await firestore.collection('users').doc(uid).get();
 
-          // Converter os documentos em instâncias de UserModel
-          List<UserModel> users = querySnapshot.docs.map((doc) {
-            Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-            return UserModel(
-              uid: doc.id, // Use o ID do documento como UID
-              firstname: data['firstname'],
-              lastname: data['lastname'],
-              birthdate: data['birthdate'],
-              username: data['username'],
-            );
-          }).toList();
+        // Verificar se o documento existe
+        if (documentSnapshot.exists) {
+          Map<String, dynamic> data =
+          documentSnapshot.data() as Map<String, dynamic>;
+          UserModel user = UserModel(
+            uid: documentSnapshot.id,
+            firstname: data['firstname'],
+            lastname: data['lastname'],
+            birthdate: data['birthdate'],
+            username: data['username'],
+          );
 
-          // Emitir o estado com os usuários obtidos
-          emit(ObtainedUsers(users: users));
-        } catch (e) {
-          emit(ErrorUser(
-              message: 'Não foi possível obter usuários, tente novamente.'));
+          // Emitir o estado com os dados do usuário obtidos
+          emit(UserDataLoaded(userData: user));
+        } else {
+          emit(ErrorUser(message: 'Usuário não encontrado.'));
         }
-      },
-    );
+      } catch (e) {
+        emit(ErrorUser(message: 'Não foi possível obter informações do usuário.'));
+      }
+    });
 
-    // on<RetrieveUsers>((event, emit) async {
-    //   try {
-    //     DocumentSnapshot userSnapshot = await firestore.collection('users').doc(uid).get();
-    //     Map<String, dynamic> userData = userSnapshot.data() as Map<String, dynamic>;
-    //
-    //     UserModel updatedUser = UserModel.fromMap(uid, userData);
-    //
-    //     emit(Authenticated(userModel: updatedUser));
-    //   } catch (e) {
-    //     // Trate erros de recuperação de dados, se necessário
-    //   }
-    // });
 
 
     on<LoginUser>((event, emit) async {
       try {
         await _authenticationService.signInWithEmailAndPassword(
             event.username, event.password);
+
       } catch (e) {
         emit(AuthError(
             message:
@@ -152,14 +141,6 @@ class AuthServerEvent extends AuthEvent {
 
 class RetrieveUsers extends AuthEvent {}
 
-// class UserInfoRetrieved extends AuthState {
-//   UserModel userModel;
-//
-//   UserInfoRetrieved({required this.userModel});
-// }
-//
-// class RetrieveUserInfoEvent extends AuthEvent {}
-
 
 /*
 Estados
@@ -182,6 +163,11 @@ class AuthError extends AuthState {
 }
 
 class RetrieveUserInfo extends AuthEvent {}
+
+class UserDataLoaded extends AuthState {
+  final UserModel userData;
+  UserDataLoaded({required this.userData});
+}
 
 
 class ObtainedUsers extends AuthState {
